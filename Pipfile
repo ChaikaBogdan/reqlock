@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+psycopg2 = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
+django-cors-headers = "*"
+dj-rest-auth = {extras = ["with_social"], version = "*"}
+djangorestframework-simplejwt = "*"
+gunicorn = "*"
+django-heroku = "*"
+django-grappelli = "*"
+django-debug-toolbar = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
