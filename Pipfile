@@ -15,9 +15,9 @@ djangorestframework-simplejwt = "*"
 gunicorn = "*"
 django-heroku = "*"
 django-grappelli = "*"
-django-debug-toolbar = "*"
 
 [dev-packages]
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.9"
