@@ -8,7 +8,7 @@ class Organisation(models.Model):
     contact_phone = models.CharField(max_length=100, null=True, blank=True)
     contact_email = models.EmailField(max_length=255, null=True, blank=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    members = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='member_in_organisations')
+    members = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='+')
 
     def __str__(self):
         return self.name
@@ -18,7 +18,7 @@ class Project(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    members = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='member_in_projects')
+    members = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='+')
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -105,7 +105,7 @@ class Contract(models.Model):
         default='NONE',
     )
 
-    components = models.ManyToManyField(Component, blank=True, related_name='component_in_contracts')
+    components = models.ManyToManyField(Component, blank=True, related_name='+')
 
     def __str__(self):
         return self.name
@@ -122,7 +122,7 @@ class CustomField(models.Model):
 
 
 class Review(models.Model):
-    contracts = models.ManyToManyField(Contract, blank=True, related_name='contract_in_reviews')
+    contracts = models.ManyToManyField(Contract, blank=True, related_name='+')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     ROLES = [
         ('QA', 'QA'),
