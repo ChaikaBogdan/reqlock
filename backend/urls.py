@@ -26,7 +26,6 @@ router.register(r'components', views.ComponentViewSet, 'component')
 router.register(r'contracts', views.ContractViewSet, 'contract')
 
 urlpatterns = [
-    path('', views.index, name='index'),
     path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
     path('debug/', include(debug_toolbar.urls)),

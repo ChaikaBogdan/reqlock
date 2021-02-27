@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 
 from .serializers import *
@@ -22,7 +21,3 @@ class ComponentViewSet(viewsets.ModelViewSet):
 class ContractViewSet(viewsets.ModelViewSet):
     queryset = Contract.objects.all()
     serializer_class = ContractSerializer
-
-
-def index(request):
-    return render(request, 'index.html')

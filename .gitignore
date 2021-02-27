@@ -132,3 +132,7 @@ dmypy.json
 # Static files
 static/
 staticfiles/
+
+
+# Node modules
+node_modules/
