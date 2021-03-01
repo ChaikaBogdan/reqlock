@@ -10,14 +10,14 @@ djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
 django-cors-headers = "*"
-dj-rest-auth = {extras = ["with_social"], version = "*"}
+dj-rest-auth = { extras = ["with_social"], version = "*" }
 djangorestframework-simplejwt = "*"
 gunicorn = "*"
 django-heroku = "*"
 django-grappelli = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
-django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.9"
