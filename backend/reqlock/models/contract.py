@@ -1,33 +1,34 @@
 from django.db import models
+from django.utils.translation import gettext as _
 
 from .component import Component
 
 
 class Contract(models.Model):
     TYPES = [
-        ('FRONTEND', 'Frontend'),
-        ('BACKEND', 'Backend'),
-        ('DESIGN', 'Design'),
+        ('FRONTEND', _('Frontend')),
+        ('BACKEND', _('Backend')),
+        ('DESIGN', _('Design')),
     ]
     LOCK_STATUSES = [
-        ('LOCK', 'Locked'),
-        ('UNLOCK', 'Unlocked'),
-        ('AWAIT', 'Awaiting'),
+        ('LOCK', _('Locked')),
+        ('UNLOCK', _('Unlocked')),
+        ('AWAIT', _('Awaiting')),
 
     ]
     CONTRACT_STATUTES = [
-        ('DRAFT', 'Draft'),
-        ('DESIGN', 'In Design'),
-        ('QA', 'QA'),
-        ('DEV', 'DEV'),
+        ('DRAFT', _('Draft')),
+        ('DESIGN', _('In Design')),
+        ('QA', _('QA')),
+        ('DEV', _('DEV')),
 
     ]
 
     TESTS_STATUSES = [
-        ('FAIL', 'Failing'),
-        ('PASS', 'Passing'),
-        ('FLAKY', 'Unstable'),
-        ('NONE', 'None'),
+        ('FAIL', _('Failing')),
+        ('PASS', _('Passing')),
+        ('FLAKY', _('Unstable')),
+        ('NONE', _('None')),
     ]
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)

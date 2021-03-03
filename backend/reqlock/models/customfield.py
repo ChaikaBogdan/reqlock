@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext as _
 
 from .contract import Contract
 
@@ -10,4 +11,4 @@ class CustomField(models.Model):
     zeplin_mockup = models.URLField(max_length=255, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.contract.name} custom fields'
+        return _('%(name)s custom fields') % {'name': self.contract.name}
