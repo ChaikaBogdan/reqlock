@@ -40,17 +40,20 @@ class Contract(models.Model):
     lock_status = models.CharField(
         max_length=50,
         choices=LOCK_STATUSES,
-        default='UNLOCK',
+        null=True,
+        blank=True
     )
     contract_status = models.CharField(
         max_length=50,
         choices=CONTRACT_STATUTES,
-        default='DRAFT',
+        null=True,
+        blank=True
     )
     tests_status = models.CharField(
         max_length=50,
         choices=TESTS_STATUSES,
-        default='NONE',
+        null=True,
+        blank=True
     )
 
     components = models.ManyToManyField(Component, blank=True, related_name='+')

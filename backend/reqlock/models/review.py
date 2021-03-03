@@ -5,7 +5,7 @@ from .contract import Contract
 
 
 class Review(models.Model):
-    contracts = models.ManyToManyField(Contract, blank=True, related_name='+')
+    contracts = models.ManyToManyField(Contract, blank=True,related_name='+')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     ROLES = [
         ('QA', 'QA'),
