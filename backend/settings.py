@@ -14,8 +14,6 @@ from pathlib import Path
 
 import django_heroku
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +29,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+    'app_labels': ["reqlock"],
+}
 
 INSTALLED_APPS = [
     'grappelli',
@@ -50,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'django_extensions',
     'reqlock',
 ]
 

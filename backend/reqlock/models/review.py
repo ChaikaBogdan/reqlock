@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils.translation import gettext as _
 
 from .contract import Contract
 
@@ -38,4 +39,4 @@ class Review(models.Model):
     )
 
     def __str__(self):
-        return f'{self.user.email} reviews'
+        return _('%(email)s reviews') % {'email': self.user.email}

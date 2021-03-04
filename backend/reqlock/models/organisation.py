@@ -8,7 +8,7 @@ class Organisation(models.Model):
     contact_phone = models.CharField(max_length=100, null=True, blank=True)
     contact_email = models.EmailField(max_length=255, null=True, blank=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    members = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='+')
+    members = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='+')
 
     def __str__(self):
         return self.name

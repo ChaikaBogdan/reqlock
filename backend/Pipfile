@@ -16,6 +16,9 @@ gunicorn = "*"
 django-heroku = "*"
 django-grappelli = "*"
 django-debug-toolbar = "*"
+pyparsing = "*"
+pydot = "*"
+django-extensions = "*"
 
 [dev-packages]
 
