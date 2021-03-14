@@ -3,6 +3,8 @@ from django.utils.translation import gettext as _
 
 from .contract import Contract
 
+# TODO: Add new model with FK org, with field name type CUSTOM FIELDS
+# TODO: Add new model CUSTOM VALUES with FK CUSTOM FIELD and FK TO CONTRACT
 
 class CustomField(models.Model):
     contract = models.ForeignKey(Contract, on_delete=models.CASCADE)

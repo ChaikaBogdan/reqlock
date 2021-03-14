@@ -21,7 +21,7 @@ class Contract(models.Model):
         ('DESIGN', _('In Design')),
         ('QA', _('QA')),
         ('DEV', _('DEV')),
-
+        ('DONE', _('DONE')),
     ]
 
     TESTS_STATUSES = [

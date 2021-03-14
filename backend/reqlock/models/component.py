@@ -6,6 +6,7 @@ from .project import Project
 
 
 class Component(models.Model):
+    #TODO: ADD NEW COPONENT TYPES ADDED TO ORG
     TYPES = [
         ('FRONTEND', _('Frontend')),
         ('BACKEND', _('Backend')),
