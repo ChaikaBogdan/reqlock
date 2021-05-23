@@ -23,8 +23,8 @@ class CustomFieldAdmin(admin.ModelAdmin):
     pass
 
 
-class ReviewerAdmin(admin.ModelAdmin):
-    filter_horizontal = ["contracts"]
+class ReviewCallAdmin(admin.ModelAdmin):
+    pass
 
 
 admin.site.register(Project, ProjectAdmin)
@@ -32,4 +32,4 @@ admin.site.register(Organisation, OrganisationAdmin)
 admin.site.register(Component, ComponentAdmin)
 admin.site.register(Contract, ContractAdmin)
 admin.site.register(CustomField, CustomFieldAdmin)
-admin.site.register(Review, ReviewerAdmin)
+admin.site.register(ReviewCall, ReviewCallAdmin)

@@ -5,25 +5,26 @@ from django.utils.translation import gettext as _
 from .contract import Contract
 
 
-class Review(models.Model):
-    contracts = models.ManyToManyField(Contract, blank=True, related_name='+')
+class ReviewCall(models.Model):
+    contract = models.ForeignKey(Contract, on_delete=models.CASCADE, related_name="+")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    #TODO: MOVE ROLES TO NEW ORG MODEL
     ROLES = [
-        ('QA', 'QA'),
-        ('DEV', 'Developer'),
-        ('MAN', 'Manager'),
-        ('DIR', 'Director'),
-        ('SRE', 'SRE'),
-        ('DEVOPS', 'DevOps'),
-        ('DESIGN', 'Designer'),
-        ('PO', 'Projects owner'),
+        ('QA', _('QA')),
+        ('DEV', _('Developer')),
+        ('MAN', _('Manager')),
+        ('DIR', _('Director')),
+        ('SRE', _('SRE')),
+        ('DEVOPS', _('DevOps')),
+        ('DESIGN', _('Designer')),
+        ('PO', _('Projects owner')),
 
     ]
     SIGN_STATUSES = [
-        ('SIGNED', 'Signed'),
-        ('AWAIT', 'Requested to sign'),
-        ('REJECT', 'Reject to sign'),
-        ('NAN', 'Sign not required'),
+        ('SIGNED', _('Signed')),
+        ('AWAIT', _('Requested to sign')),
+        ('REJECT', _('Reject to sign')),
+        ('NAN', _('Sign not required')),
     ]
     role = models.CharField(
         max_length=50,
