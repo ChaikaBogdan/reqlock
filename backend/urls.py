@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
 from django.urls import path, include
 from rest_framework import routers
 from reqlock import views
-import debug_toolbar
+
 
 router = routers.DefaultRouter()
 router.register(r'projects', views.ProjectViewSet, 'project')
@@ -28,8 +29,13 @@ router.register(r'contracts', views.ContractViewSet, 'contract')
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
-    path('debug/', include(debug_toolbar.urls)),
     path('api/', include(router.urls)),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls'))
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns.append(
+        path('debug/', include(debug_toolbar.urls))
+    )

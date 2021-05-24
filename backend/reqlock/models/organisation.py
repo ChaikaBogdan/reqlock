@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 
+# TODO: homepage, contact_phone, contact_email should be custom fields related to organisation
+# TODO: remove homepage, contact_phone, contact_email fields
 
 class Organisation(models.Model):
     name = models.CharField(max_length=255)

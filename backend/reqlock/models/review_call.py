@@ -8,7 +8,9 @@ from .contract import Contract
 class ReviewCall(models.Model):
     contract = models.ForeignKey(Contract, on_delete=models.CASCADE, related_name="+")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    #TODO: MOVE ROLES TO NEW ORG MODEL
+    #TODO: Move Roles and Sign to models related to Organization
+    #TODO: role and sign statuses should be FK
+    # Don't understand why SIGN can not be required i think should be NULL bolean similar to LOCK
     ROLES = [
         ('QA', _('QA')),
         ('DEV', _('Developer')),
@@ -40,4 +42,7 @@ class ReviewCall(models.Model):
     )
 
     def __str__(self):
-        return _('%(email)s reviews') % {'email': self.user.email}
+        return _('Review from {email} in status "{sign_status}"').format(
+            email=self.user.email,
+            sign_status=self.sign_status or _('Unknown'),
+        )

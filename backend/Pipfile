@@ -15,12 +15,12 @@ djangorestframework-simplejwt = "*"
 gunicorn = "*"
 django-heroku = "*"
 django-grappelli = "*"
-django-debug-toolbar = "*"
-pyparsing = "*"
-pydot = "*"
-django-extensions = "*"
 
 [dev-packages]
+pydot = "*"
+pyparsing = "*"
+django-debug-toolbar = "*"
+django-extensions = "*"
 
 [requires]
 python_version = "3.9"

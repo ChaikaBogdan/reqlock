@@ -5,6 +5,10 @@ from .component import Component
 
 
 class Contract(models.Model):
+    # TODO: Should be models related to Organisation with order for statutes
+    # TODO: change type and *_status to FKs
+    # Please just use 255 for char fields instead of 50-255 it has NO performance impact
+    # Lock statuses looks like NULL bolean field Null -await, Unlock -False, lock - True
     TYPES = [
         ('FRONTEND', _('Frontend')),
         ('BACKEND', _('Backend')),
@@ -14,7 +18,6 @@ class Contract(models.Model):
         ('LOCK', _('Locked')),
         ('UNLOCK', _('Unlocked')),
         ('AWAIT', _('Awaiting')),
-
     ]
     CONTRACT_STATUTES = [
         ('DRAFT', _('Draft')),
@@ -23,7 +26,6 @@ class Contract(models.Model):
         ('DEV', _('DEV')),
         ('DONE', _('DONE')),
     ]
-
     TESTS_STATUSES = [
         ('FAIL', _('Failing')),
         ('PASS', _('Passing')),

@@ -6,7 +6,9 @@ from .project import Project
 
 
 class Component(models.Model):
-    #TODO: ADD NEW COPONENT TYPES ADDED TO ORG
+    #TODO: Add component types to model related to Organisation
+    #TODO: Remove url, description and tech_stack in favor of CUSTOMFIELD
+    #TODO: replace type with FK
     TYPES = [
         ('FRONTEND', _('Frontend')),
         ('BACKEND', _('Backend')),

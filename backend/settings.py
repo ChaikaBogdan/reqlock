@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
-import django_heroku
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,20 +19,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ms7ko=k2lw@8ckndhno!28(s3^j(4b^rl9n#zxn@w3sfskr*$7'
+SECRET_KEY = os.environ.get('SECRET_KEY') or 'ms7ko=k2lw@8ckndhno!28(s3^j(4b^rl9n#zxn@w3sfskr*$7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG') or True
 
 ALLOWED_HOSTS = []
 
 # Application definition
-
-GRAPH_MODELS = {
-    'all_applications': True,
-    'group_models': True,
-    'app_labels': ["reqlock"],
-}
+if DEBUG:
+    GRAPH_MODELS = {
+        'all_applications': True,
+        'group_models': True,
+        'app_labels': ["reqlock"],
+    }
 
 INSTALLED_APPS = [
     'grappelli',
@@ -45,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'debug_toolbar',
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
@@ -54,16 +51,20 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
-    'django_extensions',
     'reqlock',
 ]
+
+if DEBUG:
+    INSTALLED_APPS = [
+        'debug_toolbar',
+        'django_extensions',
+    ] + INSTALLED_APPS
 
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -73,6 +74,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+if DEBUG:
+    MIDDLEWARE = [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ] + MIDDLEWARE
+
 SITE_ID = 1
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000'
@@ -80,18 +86,22 @@ CORS_ORIGIN_WHITELIST = [
 
 ROOT_URLCONF = 'urls'
 
+context_processors = [
+    'django.template.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
+]
+if DEBUG:
+    context_processors = [
+        'django.template.context_processors.debug'
+    ] + context_processors
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+            'context_processors': context_processors,
         },
     },
 ]
@@ -109,32 +119,12 @@ DATABASES = {
 }
 
 REST_FRAMEWORK = {
-
     'DEFAULT_AUTHENTICATION_CLASSES': (
-
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     )
-
 }
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'reqlock-auth'
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -156,4 +146,7 @@ STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
-django_heroku.settings(locals())
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
