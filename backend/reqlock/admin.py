@@ -3,17 +3,19 @@ from django.contrib.contenttypes.admin import GenericStackedInline
 from .models import *
 
 
-class ProjectAdmin(admin.ModelAdmin):
-    filter_horizontal = ["members"]
-
 class CustomFieldInline(GenericStackedInline):
     model = CustomField
     extra = 1
 
+
+class ProjectAdmin(admin.ModelAdmin):
+    filter_horizontal = ["members"]
+    inlines = [CustomFieldInline]
+
+
 class OrganisationAdmin(admin.ModelAdmin):
     filter_horizontal = ["members"]
-    inlines =[CustomFieldInline]
-    
+    inlines = [CustomFieldInline]
 
 
 class ComponentAdmin(admin.ModelAdmin):
@@ -22,6 +24,7 @@ class ComponentAdmin(admin.ModelAdmin):
 
 class ContractAdmin(admin.ModelAdmin):
     filter_horizontal = ["components"]
+    inlines = [CustomFieldInline]
 
 
 class CustomFieldAdmin(admin.ModelAdmin):
@@ -31,23 +34,30 @@ class CustomFieldAdmin(admin.ModelAdmin):
 class ReviewCallAdmin(admin.ModelAdmin):
     pass
 
+
 class TestStatusAdmin(admin.ModelAdmin):
     pass
+
 
 class SignStatusAdmin(admin.ModelAdmin):
     pass
 
+
 class LockStatusAdmin(admin.ModelAdmin):
     pass
+
 
 class ContractTypeAdmin(admin.ModelAdmin):
     pass
 
+
 class ContractStatusAdmin(admin.ModelAdmin):
     pass
 
+
 class ComponentTypeAdmin(admin.ModelAdmin):
     pass
+
 
 class OrganisationRoleAdmin(admin.ModelAdmin):
     pass

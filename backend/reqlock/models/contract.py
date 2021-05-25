@@ -4,12 +4,13 @@ from .test_status import TestStatus
 from .contract_status import ContractStatus
 from .lock_status import LockStatus
 from .contract_type import ContractType
-
+from .custom_field import CustomField
+from django.contrib.contenttypes.fields import GenericRelation
 
 class Contract(models.Model):
 
     name = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True)
+    custome_fields = GenericRelation(CustomField)
     type = models.ForeignKey(ContractType, on_delete=models.CASCADE)
     lock_status = models.ForeignKey(LockStatus, on_delete=models.CASCADE)
     contract_status = models.ForeignKey(
