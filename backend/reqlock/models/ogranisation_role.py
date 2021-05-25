@@ -2,7 +2,7 @@ from django.db import models
 from .organisation import Organisation
 
 
-class CompanyRole(models.Model):
+class OrganisationRole(models.Model):
 
     code = models.CharField(max_length=255)
     name = models.CharField(max_length=255)

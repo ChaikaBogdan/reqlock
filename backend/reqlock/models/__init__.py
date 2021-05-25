@@ -6,7 +6,7 @@ from .project import Project
 from .review_call import ReviewCall
 from .sign_status import SignStatus
 from .test_status import TestStatus
-from .company_role import CompanyRole
+from .ogranisation_role import OrganisationRole
 from .lock_status import LockStatus
 from .component_type import ComponentType
 from .contract_status import ContractStatus

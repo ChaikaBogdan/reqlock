@@ -49,7 +49,7 @@ class ContractStatusAdmin(admin.ModelAdmin):
 class ComponentTypeAdmin(admin.ModelAdmin):
     pass
 
-class CompanyRoleAdmin(admin.ModelAdmin):
+class OrganisationRoleAdmin(admin.ModelAdmin):
     pass
 
 
@@ -64,5 +64,5 @@ admin.site.register(LockStatus, LockStatusAdmin)
 admin.site.register(SignStatus, SignStatusAdmin)
 admin.site.register(ContractStatus, ContractStatusAdmin)
 admin.site.register(ContractType, ContractStatusAdmin)
-admin.site.register(CompanyRole, CompanyRoleAdmin)
+admin.site.register(OrganisationRole, OrganisationRoleAdmin)
 admin.site.register(ComponentType, ComponentTypeAdmin)
