@@ -4,6 +4,5 @@ find . -path "./reqlock/migrations/*.pyc"  -delete
 python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser --noinput --username admin  --email admin@reqlock.com
-python manage.py collectstatic --noinput
 (test -f db.json && python manage.py loaddata db.json) || true
 python manage.py runserver
