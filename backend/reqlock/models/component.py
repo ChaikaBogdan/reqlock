@@ -1,38 +1,18 @@
 from django.conf import settings
 from django.db import models
-from django.utils.translation import gettext as _
-
 from .project import Project
+from .component_type import ComponentType
 
 
 class Component(models.Model):
-    #TODO: Add component types to model related to Organisation
-    #TODO: Remove url, description and tech_stack in favor of CUSTOMFIELD
-    #TODO: replace type with FK
-    TYPES = [
-        ('FRONTEND', _('Frontend')),
-        ('BACKEND', _('Backend')),
-        ('MONOLITH', _('Monolith')),
-        ('LAMBDA', _('Lambda')),
-        ('PRODUCER', _('Producer')),
-        ('CONSUMER', _('Consumer')),
-        ('BROKER', _('Broker')),
-        ('QUEUE', _('Queue')),
-        ('WORKER', _('Worker')),
-        ('DB', _('Database')),
-        ('DS', _('Data Source')),
-    ]
+
     name = models.CharField(max_length=255)
-    url = models.URLField(max_length=255, null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
-    tech_stack = models.CharField(max_length=255, null=True, blank=True)
-    type = models.CharField(
-        max_length=50,
-        choices=TYPES,
-        null=True, blank=True
-    )
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    type = models.ForeignKey(ComponentType, on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    components_type = models.ForeignKey(
+        ComponentType, on_delete=models.CASCADE, related_name='+')
 
     def __str__(self):
         return self.name
