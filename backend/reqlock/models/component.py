@@ -11,8 +11,6 @@ class Component(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    components_type = models.ForeignKey(
-        ComponentType, on_delete=models.CASCADE, related_name='+')
 
     def __str__(self):
         return self.name
