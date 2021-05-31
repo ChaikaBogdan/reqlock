@@ -1,65 +1,66 @@
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericStackedInline
+from .models.admin_mixins import SoftDeleteAdmin,SoftDeleteInlineAdmin
 from .models import *
 
 
-class CustomFieldInline(GenericStackedInline):
+class CustomFieldInline(SoftDeleteInlineAdmin, GenericStackedInline):
     model = CustomField
     extra = 1
 
 
-class ProjectAdmin(admin.ModelAdmin):
+class ProjectAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     filter_horizontal = ["members"]
     inlines = [CustomFieldInline]
 
 
-class OrganisationAdmin(admin.ModelAdmin):
+class OrganisationAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     filter_horizontal = ["members"]
     inlines = [CustomFieldInline]
 
 
-class ComponentAdmin(admin.ModelAdmin):
+class ComponentAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class ContractAdmin(admin.ModelAdmin):
+class ContractAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     filter_horizontal = ["components"]
     inlines = [CustomFieldInline]
 
 
-class CustomFieldAdmin(admin.ModelAdmin):
+class CustomFieldAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class ReviewCallAdmin(admin.ModelAdmin):
+class ReviewCallAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class TestStatusAdmin(admin.ModelAdmin):
+class TestStatusAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class SignStatusAdmin(admin.ModelAdmin):
+class SignStatusAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class LockStatusAdmin(admin.ModelAdmin):
+class LockStatusAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class ContractTypeAdmin(admin.ModelAdmin):
+class ContractTypeAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class ContractStatusAdmin(admin.ModelAdmin):
+class ContractStatusAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class ComponentTypeAdmin(admin.ModelAdmin):
+class ComponentTypeAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class OrganisationRoleAdmin(admin.ModelAdmin):
+class OrganisationRoleAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 

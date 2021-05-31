@@ -1,8 +1,9 @@
 from django.db import models
 from .organisation import Organisation
+from .model_mixins import SoftDeleteMixin
 
 
-class ContractType(models.Model):
+class ContractType(SoftDeleteMixin, models.Model):
 
     code = models.CharField(max_length=255)
     name = models.CharField(max_length=255)

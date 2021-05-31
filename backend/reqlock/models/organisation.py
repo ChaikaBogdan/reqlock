@@ -2,9 +2,10 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.conf import settings
 from django.db import models
 from .custom_field import CustomField
+from .model_mixins import SoftDeleteMixin
 
 
-class Organisation(models.Model):
+class Organisation(SoftDeleteMixin, models.Model):
 
     name = models.CharField(max_length=255)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,

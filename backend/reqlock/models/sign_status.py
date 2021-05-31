@@ -1,8 +1,10 @@
 from django.db import models
 from .organisation import Organisation
+from .model_mixins import SoftDeleteMixin
+from django.utils.translation import ugettext_lazy as _
 
 
-class SignStatus(models.Model):
+class SignStatus(SoftDeleteMixin, models.Model):
 
     code = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
@@ -10,3 +12,7 @@ class SignStatus(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = _('Sign status')
+        verbose_name_plural = _('Sign statuses')

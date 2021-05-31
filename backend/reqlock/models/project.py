@@ -3,9 +3,10 @@ from django.db import models
 from .organisation import Organisation
 from .custom_field import CustomField
 from django.contrib.contenttypes.fields import GenericRelation
+from .model_mixins import SoftDeleteMixin
 
 
-class Project(models.Model):
+class Project(SoftDeleteMixin, models.Model):
 
     name = models.CharField(max_length=255)
     custom_fields = GenericRelation(CustomField)
