@@ -2,8 +2,10 @@ from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
+from .model_mixins import SoftDeleteMixin
 
-class CustomField(models.Model):
+
+class CustomField(SoftDeleteMixin, models.Model):
 
     code = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
@@ -17,5 +19,5 @@ class CustomField(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _('Custom Field')
-        verbose_name_plural = _('Custom Fields')
+        verbose_name = _('Custom field')
+        verbose_name_plural = _('Custom fields')

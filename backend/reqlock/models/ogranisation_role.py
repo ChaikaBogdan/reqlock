@@ -1,8 +1,9 @@
 from django.db import models
 from .organisation import Organisation
+from .model_mixins import SoftDeleteMixin
 
 
-class OrganisationRole(models.Model):
+class OrganisationRole(SoftDeleteMixin, models.Model):
 
     code = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
