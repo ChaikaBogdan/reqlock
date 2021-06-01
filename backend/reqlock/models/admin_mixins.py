@@ -26,3 +26,8 @@ class SoftDeleteInlineAdmin(GenericStackedInline):
         fields = list(super().get_fields(request, obj=obj))
         fields_to_remove = ['created_at', 'updated_at', 'deleted_at']
         return [f for f in fields if f not in fields_to_remove]
+
+
+class HiddenModelAdmin(admin.ModelAdmin):
+    def has_module_permission(self, request):
+        return False

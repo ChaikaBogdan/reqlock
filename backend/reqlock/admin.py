@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericStackedInline
-from .models.admin_mixins import SoftDeleteAdmin,SoftDeleteInlineAdmin
+from .models.admin_mixins import SoftDeleteAdmin,SoftDeleteInlineAdmin, HiddenModelAdmin
 from .models import *
 
 
@@ -28,7 +28,7 @@ class ContractAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     inlines = [CustomFieldInline]
 
 
-class CustomFieldAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class CustomFieldAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
@@ -36,31 +36,31 @@ class ReviewCallAdmin(SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class TestStatusAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class TestStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class SignStatusAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class SignStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class LockStatusAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class LockStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class ContractTypeAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class ContractTypeAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class ContractStatusAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class ContractStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class ComponentTypeAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class ComponentTypeAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
-class OrganisationRoleAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class OrganisationRoleAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
     pass
 
 
