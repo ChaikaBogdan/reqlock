@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class SoftDeleteAdmin(admin.ModelAdmin):
-    readonly_fields = ('created_at', 'updated_at')
+    readonly_fields = ('deleted_at', 'created_at', 'updated_at')
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = list(super().get_fieldsets(request, obj=obj))
