@@ -28,7 +28,7 @@ router.register(r'contracts', views.ContractViewSet, 'contract')
 
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),
-    path('admin/', admin.site.urls),
+    path('', admin.site.urls),
     path('api/', include(router.urls)),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls'))
