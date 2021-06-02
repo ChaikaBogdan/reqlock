@@ -2,10 +2,10 @@ from django.conf import settings
 from django.db import models
 from .project import Project
 from .component_type import ComponentType
-from .model_mixins import SoftDeleteMixin
+from .model_mixins import SoftDeleteModel
 
 
-class Component(SoftDeleteMixin):
+class Component(SoftDeleteModel):
 
     name = models.CharField(max_length=255)
     type = models.ForeignKey(ComponentType, on_delete=models.CASCADE)

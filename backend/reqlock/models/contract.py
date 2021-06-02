@@ -6,10 +6,10 @@ from .lock_status import LockStatus
 from .contract_type import ContractType
 from .custom_field import CustomField
 from django.contrib.contenttypes.fields import GenericRelation
-from .model_mixins import SoftDeleteMixin
+from .model_mixins import SoftDeleteModel
 
 
-class Contract(SoftDeleteMixin):
+class Contract(SoftDeleteModel):
 
     name = models.CharField(max_length=255)
     custome_fields = GenericRelation(CustomField)

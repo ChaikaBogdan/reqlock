@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models.admin_mixins import SoftDeleteAdmin,SoftDeleteInlineAdmin, HiddenModelAdmin
+from .models.admin_mixins import SoftDeleteAdmin,SoftDeleteInlineAdmin, HiddenModelMixin
 from .models import *
 
 
@@ -27,7 +27,7 @@ class ContractAdmin(SoftDeleteAdmin):
     inlines = [CustomFieldInline]
 
 
-class CustomFieldAdmin(HiddenModelAdmin, SoftDeleteAdmin):
+class CustomFieldAdmin(HiddenModelMixin, SoftDeleteAdmin):
     pass
 
 
@@ -35,31 +35,31 @@ class ReviewCallAdmin(SoftDeleteAdmin):
     pass
 
 
-class TestStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin):
+class TestStatusAdmin(HiddenModelMixin, SoftDeleteAdmin):
     pass
 
 
-class SignStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin):
+class SignStatusAdmin(HiddenModelMixin, SoftDeleteAdmin):
     pass
 
 
-class LockStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin):
+class LockStatusAdmin(HiddenModelMixin, SoftDeleteAdmin):
     pass
 
 
-class ContractTypeAdmin(HiddenModelAdmin, SoftDeleteAdmin):
+class ContractTypeAdmin(HiddenModelMixin, SoftDeleteAdmin):
     pass
 
 
-class ContractStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin):
+class ContractStatusAdmin(HiddenModelMixin, SoftDeleteAdmin):
     pass
 
 
-class ComponentTypeAdmin(HiddenModelAdmin, SoftDeleteAdmin):
+class ComponentTypeAdmin(HiddenModelMixin, SoftDeleteAdmin):
     pass
 
 
-class OrganisationRoleAdmin(HiddenModelAdmin, SoftDeleteAdmin):
+class OrganisationRoleAdmin(HiddenModelMixin, SoftDeleteAdmin):
     pass
 
 
