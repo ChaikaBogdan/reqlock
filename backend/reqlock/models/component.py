@@ -5,7 +5,7 @@ from .component_type import ComponentType
 from .model_mixins import SoftDeleteMixin
 
 
-class Component(SoftDeleteMixin, models.Model):
+class Component(SoftDeleteMixin):
 
     name = models.CharField(max_length=255)
     type = models.ForeignKey(ComponentType, on_delete=models.CASCADE)

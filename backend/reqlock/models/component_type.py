@@ -3,7 +3,7 @@ from .organisation import Organisation
 from .model_mixins import SoftDeleteMixin
 
 
-class ComponentType(SoftDeleteMixin, models.Model):
+class ComponentType(SoftDeleteMixin):
 
     code = models.CharField(max_length=255)
     name = models.CharField(max_length=255)

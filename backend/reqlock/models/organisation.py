@@ -5,7 +5,7 @@ from .custom_field import CustomField
 from .model_mixins import SoftDeleteMixin
 
 
-class Organisation(SoftDeleteMixin, models.Model):
+class Organisation(SoftDeleteMixin):
 
     name = models.CharField(max_length=255)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,

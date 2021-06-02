@@ -28,6 +28,6 @@ class SoftDeleteInlineAdmin(GenericStackedInline):
         return [f for f in fields if f not in fields_to_remove]
 
 
-class HiddenModelAdmin(admin.ModelAdmin):
+class HiddenModelAdmin():
     def has_module_permission(self, request):
         return False

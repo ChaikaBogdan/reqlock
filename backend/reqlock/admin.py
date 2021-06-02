@@ -1,66 +1,65 @@
 from django.contrib import admin
-from django.contrib.contenttypes.admin import GenericStackedInline
 from .models.admin_mixins import SoftDeleteAdmin,SoftDeleteInlineAdmin, HiddenModelAdmin
 from .models import *
 
 
-class CustomFieldInline(SoftDeleteInlineAdmin, GenericStackedInline):
+class CustomFieldInline(SoftDeleteInlineAdmin):
     model = CustomField
     extra = 1
 
 
-class ProjectAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class ProjectAdmin(SoftDeleteAdmin):
     filter_horizontal = ["members"]
     inlines = [CustomFieldInline]
 
 
-class OrganisationAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class OrganisationAdmin(SoftDeleteAdmin):
     filter_horizontal = ["members"]
     inlines = [CustomFieldInline]
 
 
-class ComponentAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class ComponentAdmin(SoftDeleteAdmin):
     pass
 
 
-class ContractAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class ContractAdmin(SoftDeleteAdmin):
     filter_horizontal = ["components"]
     inlines = [CustomFieldInline]
 
 
-class CustomFieldAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
+class CustomFieldAdmin(HiddenModelAdmin, SoftDeleteAdmin):
     pass
 
 
-class ReviewCallAdmin(SoftDeleteAdmin, admin.ModelAdmin):
+class ReviewCallAdmin(SoftDeleteAdmin):
     pass
 
 
-class TestStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
+class TestStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin):
     pass
 
 
-class SignStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
+class SignStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin):
     pass
 
 
-class LockStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
+class LockStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin):
     pass
 
 
-class ContractTypeAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
+class ContractTypeAdmin(HiddenModelAdmin, SoftDeleteAdmin):
     pass
 
 
-class ContractStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
+class ContractStatusAdmin(HiddenModelAdmin, SoftDeleteAdmin):
     pass
 
 
-class ComponentTypeAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
+class ComponentTypeAdmin(HiddenModelAdmin, SoftDeleteAdmin):
     pass
 
 
-class OrganisationRoleAdmin(HiddenModelAdmin, SoftDeleteAdmin, admin.ModelAdmin):
+class OrganisationRoleAdmin(HiddenModelAdmin, SoftDeleteAdmin):
     pass
 
 

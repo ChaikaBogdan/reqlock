@@ -9,7 +9,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from .model_mixins import SoftDeleteMixin
 
 
-class Contract(SoftDeleteMixin, models.Model):
+class Contract(SoftDeleteMixin):
 
     name = models.CharField(max_length=255)
     custome_fields = GenericRelation(CustomField)

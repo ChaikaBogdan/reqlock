@@ -6,7 +6,7 @@ from .ogranisation_role import OrganisationRole
 from .model_mixins import SoftDeleteMixin
 
 
-class ReviewCall(SoftDeleteMixin, models.Model):
+class ReviewCall(SoftDeleteMixin):
     contract = models.ForeignKey(Contract, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)

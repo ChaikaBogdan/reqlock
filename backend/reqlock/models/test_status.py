@@ -4,7 +4,7 @@ from .model_mixins import SoftDeleteMixin
 from django.utils.translation import ugettext_lazy as _
 
 
-class TestStatus(SoftDeleteMixin, models.Model):
+class TestStatus(SoftDeleteMixin):
 
     code = models.CharField(max_length=255)
     name = models.CharField(max_length=255)

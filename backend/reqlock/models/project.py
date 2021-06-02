@@ -6,7 +6,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from .model_mixins import SoftDeleteMixin
 
 
-class Project(SoftDeleteMixin, models.Model):
+class Project(SoftDeleteMixin):
 
     name = models.CharField(max_length=255)
     custom_fields = GenericRelation(CustomField)
