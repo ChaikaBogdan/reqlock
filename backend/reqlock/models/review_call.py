@@ -3,10 +3,10 @@ from django.db import models
 from .contract import Contract
 from .sign_status import SignStatus
 from .ogranisation_role import OrganisationRole
-from .model_mixins import SoftDeleteMixin
+from .model_mixins import SoftDeleteModel
 
 
-class ReviewCall(SoftDeleteMixin, models.Model):
+class ReviewCall(SoftDeleteModel):
     contract = models.ForeignKey(Contract, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)

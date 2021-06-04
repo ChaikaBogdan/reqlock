@@ -4,7 +4,7 @@ from .managers import SoftDeletionManager
 from django.utils.translation import ugettext_lazy as _
 
 
-class SoftDeleteMixin(models.Model):
+class SoftDeleteModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
