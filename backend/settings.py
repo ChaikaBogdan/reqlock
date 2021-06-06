@@ -81,7 +81,7 @@ if DEBUG:
 
 SITE_ID = 1
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000'
+    'http://localhost:8080'
 ]
 
 ROOT_URLCONF = 'urls'
@@ -123,7 +123,7 @@ REST_FRAMEWORK = {
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ]
 }
 REST_USE_JWT = True
