@@ -1,38 +1,30 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
-import '../styles/App.scss';
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "../styles/App.scss";
+import "beautiful-react-diagrams/styles.css";
 
 import About from "./About.jsx";
 import Home from "./Home.jsx";
+import Projects from "./Projects.jsx";
+import Navigation from "./Navigation.jsx";
 
 const App = () => {
-
   return (
     <React.Fragment>
-        <h1>Re<span className="accent">q</span>Lock</h1>
-        <Router>
-          <nav>
-              <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-              </ul>
-          </nav>
-          <Switch>
+      <Router>
+        <Navigation />
+        <Switch>
           <Route exact path="/">
             <Home />
           </Route>
           <Route path="/about">
             <About />
           </Route>
+          <Route path="/projects">
+            <Projects />
+          </Route>
         </Switch>
-        </Router>
+      </Router>
     </React.Fragment>
   );
 };

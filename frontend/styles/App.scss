@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 $main-color: red;
 
 h1 {
@@ -7,4 +9,8 @@ h1 {
 .accent {
   color: $main-color;
   font-weight: bold;
- }
+}
+
+.dropdown-menu {
+  margin-left: -75px !important;
+}
