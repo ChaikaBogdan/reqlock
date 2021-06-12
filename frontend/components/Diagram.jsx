@@ -16,12 +16,28 @@ const testSchema = {
   ],
 };
 
+function getObjectDiff(obj1, obj2) {
+  const diff = Object.keys(obj1).reduce((result, key) => {
+    if (!obj2.hasOwnProperty(key)) {
+      result.push(key);
+    } else if (obj1[key] === obj2[key]) {
+      const resultKeyIndex = result.indexOf(key);
+      result.splice(resultKeyIndex, 1);
+    }
+    return result;
+  }, Object.keys(obj2));
+
+  return diff;
+}
+
 export const UncontrolledDiagram = (props) => {
   const initialSchema = props.initialSchema;
   if (initialSchema) {
     const currentSchema = createSchema(initialSchema);
     const verifySchema = createSchema(testSchema);
-    console.log(currentSchema == verifySchema, currentSchema, verifySchema);
+
+    console.log("DIFF", getObjectDiff(currentSchema, verifySchema));
+    console.log(currentSchema, verifySchema);
 
     const [schema, { onChange }] = useSchema(currentSchema);
     return (
