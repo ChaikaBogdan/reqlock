@@ -21,22 +21,5 @@ export const Projects = () => {
     })),
   };
 
-  console.log(projectsSchema);
-
-  const testSchema = {
-    nodes: [
-      {
-        id: "1",
-        content: "asdasd",
-        coordinates: [100, 100],
-      },
-      {
-        id: "2",
-        content: "asasd",
-        coordinates: [100, 100],
-      },
-    ],
-  };
-
-  return <UncontrolledDiagram initialSchema={testSchema} />;
+  return <UncontrolledDiagram initialSchema={projectsSchema} />;
 };
