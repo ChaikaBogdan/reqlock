@@ -20,6 +20,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "beautiful-react-diagrams": "^0.5.1",
     "bootstrap": "^4.6.0",
     "react": "^17.0.1",

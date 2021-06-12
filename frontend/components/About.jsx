@@ -1,6 +1,7 @@
 import React from "react";
 import { Jumbotron, Button } from "react-bootstrap";
-const About = () => {
+
+export const About = () => {
   return (
     <Jumbotron>
       <h1>Reqlock is...</h1>
@@ -11,5 +12,3 @@ const About = () => {
     </Jumbotron>
   );
 };
-
-export default About;

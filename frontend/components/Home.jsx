@@ -1,7 +1,7 @@
 import React from "react";
 import { BACKEND_URL } from "../constants.js";
 
-const Home = () => {
+export const Home = () => {
   const apiUrl = `${BACKEND_URL}/api`;
   const adminUrl = `${BACKEND_URL}`;
   return (
@@ -17,5 +17,3 @@ const Home = () => {
     </nav>
   );
 };
-
-export default Home;

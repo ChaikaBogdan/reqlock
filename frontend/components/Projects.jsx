@@ -1,36 +1,42 @@
-import React from "react";
-import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
+import React, { useState, useEffect } from "react";
+import { UncontrolledDiagram } from "./Diagram.jsx";
+import { BACKEND_URL } from "../constants.js";
+import axios from "axios";
 
-// the diagram model
-const initialSchema = createSchema({
-  nodes: [
-    { id: "node-1", content: "Node 1", coordinates: [250, 60] },
-    { id: "node-2", content: "Node 2", coordinates: [100, 200] },
-    { id: "node-3", content: "Node 3", coordinates: [250, 220] },
-    { id: "node-4", content: "Node 4", coordinates: [400, 200] },
-  ],
-  links: [
-    { input: "node-1", output: "node-2" },
-    { input: "node-1", output: "node-3" },
-    { input: "node-1", output: "node-4" },
-  ],
-});
+const apiUrl = `${BACKEND_URL}/api`;
 
-const UncontrolledDiagram = () => {
-  // create diagrams schema
-  const [schema, { onChange }] = useSchema(initialSchema);
+export const Projects = () => {
+  const [projects, setProjects] = useState([]);
 
-  return (
-    <div style={{ height: "22.5rem" }}>
-      <Diagram schema={schema} onChange={onChange} />
-    </div>
-  );
+  useEffect(() => {
+    axios.get(`${apiUrl}/projects/`).then((res) => {
+      setProjects(res.data);
+    });
+  }, []);
+  const projectsSchema = {
+    nodes: projects.map((project) => ({
+      id: project.id.toString(),
+      content: project.name,
+      coordinates: [100, 100],
+    })),
+  };
+
+  console.log(projectsSchema);
+
+  const testSchema = {
+    nodes: [
+      {
+        id: "1",
+        content: "asdasd",
+        coordinates: [100, 100],
+      },
+      {
+        id: "2",
+        content: "asasd",
+        coordinates: [100, 100],
+      },
+    ],
+  };
+
+  return <UncontrolledDiagram initialSchema={testSchema} />;
 };
-
-<UncontrolledDiagram />;
-
-const Projects = () => {
-  return <UncontrolledDiagram />;
-};
-
-export default Projects;

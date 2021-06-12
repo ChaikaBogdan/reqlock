@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
-const Navigation = () => {
+export const Navigation = () => {
   return (
     <Navbar bg="light" expand="lg">
       <LinkContainer to="/">
@@ -19,7 +19,11 @@ const Navigation = () => {
           </LinkContainer>
         </Nav>
 
-        <NavDropdown title="User" className="navigation-dropdwon" id="basic-nav-dropdown">
+        <NavDropdown
+          title="User"
+          className="navigation-dropdwon"
+          id="basic-nav-dropdown"
+        >
           <NavDropdown.Item>Preferences</NavDropdown.Item>
           <LinkContainer to="/about">
             <NavDropdown.Item>About</NavDropdown.Item>
@@ -31,5 +35,3 @@ const Navigation = () => {
     </Navbar>
   );
 };
-
-export default Navigation;
