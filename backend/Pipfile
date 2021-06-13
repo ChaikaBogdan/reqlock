@@ -15,6 +15,7 @@ django-grappelli = "*"
 pytest-django = "*"
 factory_boy = "*"
 django-debug-toolbar = "*"
+flake8 = "*"
 
 
 
