@@ -10,9 +10,7 @@ export const Projects = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    console.log("Projects UseEffect triggered");
     axios.get(`${apiUrl}/projects/`).then((res) => {
-      console.log("Axios getting projects and setting state");
       setProjects(res.data);
     });
   }, []);
@@ -24,7 +22,6 @@ export const Projects = () => {
     })),
   };
   if (projects.length) {
-    console.log("Projects rendering UncontrolledDiagram");
     return <UncontrolledDiagram initialSchema={projectsSchema} />;
   }
   return null;
