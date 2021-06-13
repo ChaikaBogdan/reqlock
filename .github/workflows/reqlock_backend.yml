@@ -20,10 +20,10 @@ jobs:
       - id: cache-pipenv
         uses: actions/cache@v2
         with:
-        path: ~/.local/share/virtualenvs
-        key: ${{ runner.os }}-pipenv-v2-${{ hashFiles('**/Pipfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-pipenv-v2-
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-v2-${{ hashFiles('**/Pipfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pipenv-v2-
 
       - name: Install Dependencies
         env:
