@@ -2,11 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "../styles/App.scss";
 import "beautiful-react-diagrams/styles.css";
-
-import About from "./About.jsx";
-import Home from "./Home.jsx";
-import Projects from "./Projects.jsx";
-import Navigation from "./Navigation.jsx";
+import { About } from "./About.jsx";
+import { Home } from "./Home.jsx";
+import { Projects } from "./Projects.jsx";
+import { Navigation } from "./Navigation.jsx";
 
 const App = () => {
   return (
