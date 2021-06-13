@@ -15,7 +15,7 @@ jobs:
           python-version: "3.9"
 
       - name: Install pipenv
-        run: python -m pip install --upgrade pipenv wheel 
+        run: python -m pip install --upgrade pipenv wheel
 
       - id: cache-pipenv
         uses: actions/cache@v2
@@ -27,7 +27,7 @@ jobs:
 
       - name: Install Dependencies
         env:
-          PIPENV_NOSPIN: 'true'
+          PIPENV_NOSPIN: "true"
           WORKON_HOME: ~/.local/share/virtualenvs
           PIPENV_CACHE_DIR: ~/.local/share/pipcache
         if: steps.pipenv-cache.outputs.cache-hit != 'true'
@@ -35,8 +35,7 @@ jobs:
 
       - name: Run pytest
         env:
-          PIPENV_NOSPIN: 'true'
+          PIPENV_NOSPIN: "true"
           WORKON_HOME: ~/.local/share/virtualenvs
-          PYTHONPATH: '.'
-        run: |
-        pipenv run pytest
+          PYTHONPATH: "."
+        run: pipenv run pytest
