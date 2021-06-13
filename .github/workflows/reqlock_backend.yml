@@ -26,6 +26,7 @@ jobs:
             ${{ runner.os }}-pipenv-v2-
 
       - name: Install Dependencies
+        working-directory: ./backend
         env:
           PIPENV_NOSPIN: "true"
           WORKON_HOME: ~/.local/share/virtualenvs
@@ -34,6 +35,7 @@ jobs:
         run: pipenv install --dev
 
       - name: Run pytest
+        working-directory: ./backend
         env:
           PIPENV_NOSPIN: "true"
           WORKON_HOME: ~/.local/share/virtualenvs
