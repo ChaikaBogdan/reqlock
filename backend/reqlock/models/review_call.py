@@ -4,6 +4,7 @@ from .contract import Contract
 from .sign_status import SignStatus
 from .ogranisation_role import OrganisationRole
 from .model_mixins import SoftDeleteModel
+from django.utils.translation import gettext_lazy as _
 
 
 class ReviewCall(SoftDeleteModel):
