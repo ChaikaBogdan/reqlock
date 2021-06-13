@@ -6,18 +6,17 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
-markdown = "*"
-django-filter = "*"
 django-cors-headers = "*"
 dj-rest-auth = { extras = ["with_social"], version = "*" }
 djangorestframework-simplejwt = "*"
 django-grappelli = "*"
 
 [dev-packages]
-pydot = "*"
-pyparsing = "*"
+pytest-django = "*"
+factory_boy = "*"
 django-debug-toolbar = "*"
-django-extensions = "*"
+
+
 
 [requires]
 python_version = "3.9"

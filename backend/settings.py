@@ -57,12 +57,13 @@ INSTALLED_APPS = [
 if DEBUG:
     INSTALLED_APPS = [
         'debug_toolbar',
-        'django_extensions',
     ] + INSTALLED_APPS
 
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
