@@ -1,14 +1,14 @@
 from django.db import models
 from .organisation import Organisation
 from .model_mixins import SoftDeleteModel
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 class LockStatus(SoftDeleteModel):
 
     code = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
-    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
+    organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.name

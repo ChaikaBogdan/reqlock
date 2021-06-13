@@ -7,12 +7,12 @@ from .model_mixins import SoftDeleteModel
 
 
 class ReviewCall(SoftDeleteModel):
-    contract = models.ForeignKey(Contract, on_delete=models.CASCADE)
+    contract = models.ForeignKey(Contract, on_delete=models.DO_NOTHING)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+                             on_delete=models.DO_NOTHING)
 
-    role = models.ForeignKey(OrganisationRole, on_delete=models.CASCADE)
-    sign_status = models.ForeignKey(SignStatus, on_delete=models.CASCADE)
+    role = models.ForeignKey(OrganisationRole, on_delete=models.DO_NOTHING)
+    sign_status = models.ForeignKey(SignStatus, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return _('Review from {email} in status "{sign_status}"').format(

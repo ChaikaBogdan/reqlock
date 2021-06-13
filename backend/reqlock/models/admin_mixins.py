@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericStackedInline
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 class SoftDeleteAdmin(admin.ModelAdmin):

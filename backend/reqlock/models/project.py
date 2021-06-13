@@ -11,10 +11,10 @@ class Project(SoftDeleteModel):
     name = models.CharField(max_length=255)
     custom_fields = GenericRelation(CustomField)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,
-                              on_delete=models.CASCADE)
+                              on_delete=models.DO_NOTHING)
     members = models.ManyToManyField(
         settings.AUTH_USER_MODEL, blank=True, related_name='+')
-    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
+    organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING,)
 
     def __str__(self):
         return self.name
