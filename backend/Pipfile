@@ -5,15 +5,12 @@ name = "pypi"
 
 [packages]
 django = "*"
-psycopg2 = "*"
 djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
 django-cors-headers = "*"
 dj-rest-auth = { extras = ["with_social"], version = "*" }
 djangorestframework-simplejwt = "*"
-gunicorn = "*"
-django-heroku = "*"
 django-grappelli = "*"
 
 [dev-packages]

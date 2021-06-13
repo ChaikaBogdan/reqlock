@@ -7,7 +7,7 @@ class OrganisationRole(SoftDeleteModel):
 
     code = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
-    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
+    organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.name
