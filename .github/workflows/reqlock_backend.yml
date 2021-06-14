@@ -45,4 +45,4 @@ jobs:
           PIPENV_NOSPIN: "true"
           WORKON_HOME: ~/.local/share/virtualenvs
           PYTHONPATH: "."
-        run: pipenv run pytest -p no:warnings
+        run: pipenv run pytest

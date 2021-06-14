@@ -13,7 +13,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     email = factory.Faker('email')
 
 
-class OgranisationFactory(factory.django.DjangoModelFactory):
+class OrganisationFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Organisation
         django_get_or_create = ('name',)
@@ -27,4 +27,4 @@ class ProjectFactory(factory.django.DjangoModelFactory):
         django_get_or_create = ('name',)
     name = factory.Faker('company')
     owner = factory.SubFactory(UserFactory)
-    organisation = factory.SubFactory(OgranisationFactory)
+    organisation = factory.SubFactory(OrganisationFactory)
