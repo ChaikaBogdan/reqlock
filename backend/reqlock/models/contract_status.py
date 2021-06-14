@@ -12,7 +12,7 @@ class ContractStatus(SoftDeleteModel):
 
     def __str__(self):
         return self.name
-    
+
     class Meta:
         verbose_name = _('Contract status')
         verbose_name_plural = _('Contract statuses')

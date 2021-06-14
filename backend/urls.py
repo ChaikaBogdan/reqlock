@@ -27,12 +27,22 @@ router.register(r'components', views.ComponentViewSet, 'component')
 router.register(r'contracts', views.ContractViewSet, 'contract')
 
 urlpatterns = [
-    path('grappelli/', include('grappelli.urls')),
-    path('', admin.site.urls),
-    path('api/', include(router.urls)),
-    path('dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls'))
-]
+    path(
+        'grappelli/',
+        include('grappelli.urls')),
+    path(
+        '',
+        admin.site.urls),
+    path(
+        'api/',
+        include(
+            router.urls)),
+    path(
+        'dj-rest-auth/',
+        include('dj_rest_auth.urls')),
+    path(
+        'dj-rest-auth/registration/',
+        include('dj_rest_auth.registration.urls'))]
 
 if settings.DEBUG:
     import debug_toolbar
