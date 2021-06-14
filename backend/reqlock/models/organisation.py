@@ -9,7 +9,7 @@ class Organisation(SoftDeleteModel):
 
     name = models.CharField(max_length=255)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,
-                              on_delete=models.DO_NOTHING)
+                              on_delete=models.CASCADE)
     members = models.ManyToManyField(
         settings.AUTH_USER_MODEL, blank=True, related_name='+')
     custom_fields = GenericRelation(CustomField)

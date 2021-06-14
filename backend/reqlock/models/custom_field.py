@@ -12,7 +12,7 @@ class CustomField(SoftDeleteModel):
     value = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
     object_id = models.PositiveIntegerField()
-    content_type = models.ForeignKey(ContentType, on_delete=models.DO_NOTHING)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     content_object = GenericForeignKey('content_type', 'object_id')
 
     def __str__(self):

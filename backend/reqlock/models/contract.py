@@ -13,11 +13,11 @@ class Contract(SoftDeleteModel):
 
     name = models.CharField(max_length=255)
     custome_fields = GenericRelation(CustomField)
-    type = models.ForeignKey(ContractType, on_delete=models.DO_NOTHING)
-    lock_status = models.ForeignKey(LockStatus, on_delete=models.DO_NOTHING)
+    type = models.ForeignKey(ContractType, on_delete=models.CASCADE)
+    lock_status = models.ForeignKey(LockStatus, on_delete=models.CASCADE)
     contract_status = models.ForeignKey(
-        ContractStatus, on_delete=models.DO_NOTHING)
-    tests_status = models.ForeignKey(TestStatus, on_delete=models.DO_NOTHING)
+        ContractStatus, on_delete=models.CASCADE)
+    tests_status = models.ForeignKey(TestStatus, on_delete=models.CASCADE)
 
     components = models.ManyToManyField(
         Component, blank=True, related_name='+')

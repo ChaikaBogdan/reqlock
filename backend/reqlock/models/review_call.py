@@ -8,12 +8,12 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ReviewCall(SoftDeleteModel):
-    contract = models.ForeignKey(Contract, on_delete=models.DO_NOTHING)
+    contract = models.ForeignKey(Contract, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.DO_NOTHING)
+                             on_delete=models.CASCADE)
 
-    role = models.ForeignKey(OrganisationRole, on_delete=models.DO_NOTHING)
-    sign_status = models.ForeignKey(SignStatus, on_delete=models.DO_NOTHING)
+    role = models.ForeignKey(OrganisationRole, on_delete=models.CASCADE)
+    sign_status = models.ForeignKey(SignStatus, on_delete=models.CASCADE)
 
     def __str__(self):
         return _('Review from {email} in status "{sign_status}"').format(
