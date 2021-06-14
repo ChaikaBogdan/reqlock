@@ -14,6 +14,7 @@ class OrganisationSerializer(serializers.ModelSerializer):
         model = Organisation
         fields = ['id', 'name']
 
+
 class ComponentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Component
@@ -27,5 +28,3 @@ class ContractSerializer(serializers.ModelSerializer):
     class Meta:
         model = Component
         fields = ['id', 'name', 'components']
-
-

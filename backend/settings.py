@@ -19,7 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY') or 'ms7ko=k2lw@8ckndhno!28(s3^j(4b^rl9n#zxn@w3sfskr*$7'
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY') or 'ms7ko=k2lw@8ckndhno!28(s3^j(4b^rl9n#zxn@w3sfskr*$7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG') or True
@@ -82,7 +83,7 @@ if DEBUG:
 
 SITE_ID = 1
 
-CORS_ALLOWED_ORIGINS  = [
+CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
     'http://127.0.0.1:8080'
 ]

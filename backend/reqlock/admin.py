@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models.admin_mixins import SoftDeleteAdmin,SoftDeleteInlineAdmin, HiddenModelMixin
+from .models.admin_mixins import SoftDeleteAdmin, SoftDeleteInlineAdmin, HiddenModelMixin
 from .models import *
 
 

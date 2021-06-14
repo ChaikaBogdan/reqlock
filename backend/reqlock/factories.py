@@ -2,6 +2,7 @@ import factory
 from django.contrib.auth.models import User
 from . import models
 
+
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User
@@ -24,6 +25,6 @@ class ProjectFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Project
         django_get_or_create = ('name',)
-    name =factory.Faker('company')
-    owner =  factory.SubFactory(UserFactory)
+    name = factory.Faker('company')
+    owner = factory.SubFactory(UserFactory)
     organisation = factory.SubFactory(OgranisationFactory)
