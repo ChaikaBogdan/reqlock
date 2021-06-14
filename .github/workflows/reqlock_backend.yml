@@ -1,6 +1,8 @@
 name: ReqLock Backend
 on: [push]
-
+defaults:
+  run:
+    working-directory: ./backend
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -26,7 +28,6 @@ jobs:
             ${{ runner.os }}-pipenv-v2-
 
       - name: Install dependencies
-        working-directory: ./backend
         env:
           PIPENV_NOSPIN: "true"
           WORKON_HOME: ~/.local/share/virtualenvs
@@ -40,7 +41,6 @@ jobs:
           pipenv run flake8 . --count --exit-zero --max-complexity=10 --ignore=F401,F403,F405 --max-line-length=127 --statistics --exclude migration
 
       - name: Run pytest
-        working-directory: ./backend
         env:
           PIPENV_NOSPIN: "true"
           WORKON_HOME: ~/.local/share/virtualenvs
