@@ -12,11 +12,11 @@ djangorestframework-simplejwt = "*"
 django-grappelli = "*"
 
 [dev-packages]
-pytest-django = "*"
-factory_boy = "*"
 django-debug-toolbar = "*"
 flake8 = "*"
 autopep8 = "*"
+pytest-factoryboy = "*"
+pytest-django = "*"
 
 [requires]
 python_version = "3.9"
