@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from distutils.dist import strtobool
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,21 +24,14 @@ SECRET_KEY = os.environ.get(
     'SECRET_KEY') or 'ms7ko=k2lw@8ckndhno!28(s3^j(4b^rl9n#zxn@w3sfskr*$7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') or True
+# strtobool actually returns 0 or 1
+DEBUG = bool(strtobool(os.environ.get('DEBUG', 'True')))
 
 ALLOWED_HOSTS = []
 
-# Application definition
-if DEBUG:
-    GRAPH_MODELS = {
-        'all_applications': True,
-        'group_models': True,
-        'app_labels': ["reqlock"],
-    }
-
 INSTALLED_APPS = [
     'grappelli',
-    'django.contrib.admin',
+    'apps.ReqlockAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
