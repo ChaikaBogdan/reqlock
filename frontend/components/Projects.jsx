@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { UncontrolledDiagram } from "./Diagram.jsx";
 import { BACKEND_URL } from "../constants.js";
 import axios from "axios";
-import _ from "lodash";
 
 const apiUrl = `${BACKEND_URL}/api`;
 

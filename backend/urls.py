@@ -18,6 +18,7 @@ from django.conf import settings
 from django.urls import path, include
 from rest_framework import routers
 from reqlock import views
+from allauth.account.views import confirm_email
 
 
 router = routers.DefaultRouter()
@@ -40,9 +41,15 @@ urlpatterns = [
     path(
         'dj-rest-auth/',
         include('dj_rest_auth.urls')),
+    # dj_rest_auth/registration/urls.py#L11
+    path(
+        'dj-rest-auth/registration/account-confirm-email/<str:key>/',
+        confirm_email,
+        name='account_confirm_email'),
     path(
         'dj-rest-auth/registration/',
-        include('dj_rest_auth.registration.urls'))]
+        include('dj_rest_auth.registration.urls')),
+]
 
 if settings.DEBUG:
     import debug_toolbar

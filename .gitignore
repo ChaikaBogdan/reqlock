@@ -139,5 +139,4 @@ staticfiles/
 node_modules/
 
 # Migrations
-reqlock/migrations/
-!/reqlock/migrations/__init__.py
+migrations/
