@@ -1,16 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-// import Button from "react-bootstrap";
-// import TextField from "react-bootstrap";
-import { BACKEND_URL } from "../constants.js";
-import axios from "axios";
+import React from "react"
+import { useFormik } from "formik"
+import * as yup from "yup"
+import Button from "@material-ui/core/Button"
+import TextField from "@material-ui/core/TextField"
+import { BACKEND_URL } from "../constants.js"
+import axios from "axios"
+import { useHistory } from 'react-router-dom'
 
-const signUpURL = `${BACKEND_URL}/dj-rest-auth/registration/`;
-
+const signUpURL = `${BACKEND_URL}/dj-rest-auth/registration/`
 const validationSchema = yup.object({
   email: yup
     .string("Enter your email")
@@ -24,26 +21,24 @@ const validationSchema = yup.object({
     .string("Verify your password")
     .min(4, "Password should be of minimum 8 characters length")
     .required("Password is required"),
-});
+})
 
 export const SignUp = () => {
+  const history = useHistory()
   const formik = useFormik({
     initialValues: {
       email: "user@reqlock.com",
       password1: "user123",
       password2: "user123",
     },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    validationSchema,
+    onSubmit: values => {
       axios
-        .post(`${signUpURL}`, values)
-        .then((res) => {
-          alert(JSON.stringify(res, null, 2));
+        .post(signUpURL, values)
+        .then(res => {
+          history.push('/signin')
         })
-        .catch((error) => {
-          alert(JSON.stringify(error.response.data, null, 2));
-        });
+        .catch(error => console.error(error))
     },
   });
 
@@ -84,5 +79,5 @@ export const SignUp = () => {
         </Button>
       </form>
     </div>
-  );
-};
+  )
+}

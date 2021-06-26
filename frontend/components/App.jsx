@@ -1,19 +1,19 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "../styles/App.scss";
-import "beautiful-react-diagrams/styles.css";
-import { About } from "./About.jsx";
-import { Home } from "./Home.jsx";
-import { SignIn } from "./SignIn.jsx";
-import { SignUp } from "./SignUp.jsx";
-import { LogOut } from "./LogOut.jsx";
-import { Projects } from "./Projects.jsx";
-import { Navigation } from "./Navigation.jsx";
+import React from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import "../styles/App.scss"
+import "beautiful-react-diagrams/styles.css"
+import { About } from "./About.jsx"
+import { Home } from "./Home.jsx"
+import { SignIn } from "./SignIn.jsx"
+import { SignUp } from "./SignUp.jsx"
+import { LogOut } from "./LogOut.jsx"
+import { Projects } from "./Projects.jsx"
+import { Navigation } from "./Navigation.jsx"
 
-const App = () => {
+export const App = () => {
   return (
     <React.Fragment>
-      <Router>
+      <Router forceRefresh={true}>
         <Navigation />
         <Switch>
           <Route exact path="/">
@@ -37,7 +37,5 @@ const App = () => {
         </Switch>
       </Router>
     </React.Fragment>
-  );
-};
-
-export default App;
+  )
+}

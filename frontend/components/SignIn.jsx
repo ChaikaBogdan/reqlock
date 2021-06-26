@@ -1,15 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-// import Button from "react-bootstrap";
-// import TextField from "react-bootstrap";
-import { BACKEND_URL } from "../constants.js";
-import axios from "axios";
+import React from "react"
+import { useFormik } from "formik"
+import * as yup from "yup"
+import Button from "@material-ui/core/Button"
+import TextField from "@material-ui/core/TextField"
+import { BACKEND_URL } from "../constants.js"
+import { useHistory } from "react-router-dom"
+import axios from "axios"
 
-const signInURL = `${BACKEND_URL}/dj-rest-auth/login/`;
+const signInURL = `${BACKEND_URL}/dj-rest-auth/login/`
 
 const validationSchema = yup.object({
   email: yup
@@ -20,24 +18,30 @@ const validationSchema = yup.object({
     .string("Enter your password")
     .min(4, "Password should be of minimum 8 characters length")
     .required("Password is required"),
-});
+})
 
-export const SignIn = () => {
+export const SignIn = (props) => {
+  const history = useHistory()
   const formik = useFormik({
     initialValues: {
       email: "user@reqlock.com",
       password: "user123",
     },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    validationSchema,
+    onSubmit: values => {
       axios
-        .post(`${signInURL}`, values)
-        .then((res) => {
-          alert(JSON.stringify(res, null, 2));
+        .post(signInURL, values)
+        .then(({data}) => {
+          console.info(data)
+          const {access_token: token, user} = data
+          const {username, email, pk} = user
+          const auth = JSON.stringify({token, username, email, pk})
+          localStorage.setItem('auth', auth)
+          history.push('/');
+          console.info('Login');
         })
-        .catch((error) => {
-          alert(JSON.stringify(error.response.data, null, 2));
+        .catch(error => {
+          console.error(error)
         });
     },
   });
@@ -69,5 +73,5 @@ export const SignIn = () => {
         </Button>
       </form>
     </div>
-  );
-};
+  )
+}

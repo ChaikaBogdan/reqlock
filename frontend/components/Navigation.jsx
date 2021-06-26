@@ -10,6 +10,8 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 
 export const Navigation = () => {
+  const auth = JSON.parse(localStorage.getItem('auth') || '{}')
+  const {token, username} = auth
   return (
     <Navbar bg="light" expand="lg">
       <LinkContainer to="/">
@@ -20,20 +22,20 @@ export const Navigation = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <LinkContainer to="/projects">
+          {token && <LinkContainer to="/projects">
             <Nav.Link>Projects</Nav.Link>
-          </LinkContainer>
+          </LinkContainer>}
           <LinkContainer to="/about">
             <Nav.Link>About</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/signup">
+          {!token && <><LinkContainer to="/signup">
             <Nav.Link>Sign Up</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/signin">
             <Nav.Link>Sign In</Nav.Link>
-          </LinkContainer>
+          </LinkContainer></>}
         </Nav>
-        <NavDropdown title="John Doe" id="basic-nav-dropdown">
+        {token && username && <><NavDropdown title={username} id="basic-nav-dropdown">
           <LinkContainer to="/preferences">
             <NavDropdown.Item>Preferences</NavDropdown.Item>
           </LinkContainer>
@@ -41,7 +43,7 @@ export const Navigation = () => {
           <LinkContainer to="/logout">
             <NavDropdown.Item>Log out</NavDropdown.Item>
           </LinkContainer>
-        </NavDropdown>
+        </NavDropdown></>}
       </Navbar.Collapse>
     </Navbar>
   );

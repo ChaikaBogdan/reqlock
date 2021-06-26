@@ -1,9 +1,11 @@
 import React from "react";
-import { BACKEND_URL } from "../constants.js";
+import { withRouter } from "react-router-dom"
+
+import { BACKEND_URL } from "../constants.js"
 
 export const Home = () => {
-  const apiUrl = `${BACKEND_URL}/api`;
-  const adminUrl = `${BACKEND_URL}`;
+  const apiUrl = `${BACKEND_URL}/api`
+  const adminUrl = `${BACKEND_URL}`
   return (
     <nav>
       <ul>
@@ -15,5 +17,5 @@ export const Home = () => {
         </li>
       </ul>
     </nav>
-  );
-};
+  )
+}
