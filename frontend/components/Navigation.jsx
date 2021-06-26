@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   Navbar,
   Nav,
@@ -6,8 +6,8 @@ import {
   Form,
   FormControl,
   Button,
-} from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+} from "react-bootstrap"
+import { LinkContainer } from "react-router-bootstrap"
 
 export const Navigation = () => {
   const auth = JSON.parse(localStorage.getItem('auth') || '{}')
@@ -46,5 +46,5 @@ export const Navigation = () => {
         </NavDropdown></>}
       </Navbar.Collapse>
     </Navbar>
-  );
-};
+  )
+}

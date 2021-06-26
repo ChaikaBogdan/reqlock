@@ -3,14 +3,13 @@ import { BACKEND_URL } from "../constants.js"
 import axios from "axios"
 import { useHistory } from "react-router-dom"
 
-const logOutURL = `${BACKEND_URL}/dj-rest-auth/logout/`
-
 export const LogOut = () => {
+  const apiUrl = `${BACKEND_URL}/dj-rest-auth/logout/`
   const history = useHistory()
 
   useEffect(() => {
     axios
-      .post(logOutURL)
+      .post(apiUrl)
       .then(res => {
         localStorage.removeItem('auth')
         console.info('Logout')

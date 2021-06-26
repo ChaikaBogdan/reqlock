@@ -7,23 +7,22 @@ import { BACKEND_URL } from "../constants.js"
 import axios from "axios"
 import { useHistory } from 'react-router-dom'
 
-const signUpURL = `${BACKEND_URL}/dj-rest-auth/registration/`
-const validationSchema = yup.object({
-  email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
-  password1: yup
-    .string("Enter your password")
-    .min(4, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
-  password2: yup
-    .string("Verify your password")
-    .min(4, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
-})
-
 export const SignUp = () => {
+  const apiURL = `${BACKEND_URL}/dj-rest-auth/registration/`
+  const validationSchema = yup.object({
+    email: yup
+      .string("Enter your email")
+      .email("Enter a valid email")
+      .required("Email is required"),
+    password1: yup
+      .string("Enter your password")
+      .min(4, "Password should be of minimum 8 characters length")
+      .required("Password is required"),
+    password2: yup
+      .string("Verify your password")
+      .min(4, "Password should be of minimum 8 characters length")
+      .required("Password is required"),
+  })
   const history = useHistory()
   const formik = useFormik({
     initialValues: {
@@ -34,7 +33,7 @@ export const SignUp = () => {
     validationSchema,
     onSubmit: values => {
       axios
-        .post(signUpURL, values)
+        .post(apiURL, values)
         .then(res => {
           history.push('/signin')
         })

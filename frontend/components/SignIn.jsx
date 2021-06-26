@@ -7,20 +7,18 @@ import { BACKEND_URL } from "../constants.js"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
 
-const signInURL = `${BACKEND_URL}/dj-rest-auth/login/`
-
-const validationSchema = yup.object({
-  email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
-  password: yup
-    .string("Enter your password")
-    .min(4, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
-})
-
-export const SignIn = (props) => {
+export const SignIn = () => {
+  const apiURL = `${BACKEND_URL}/dj-rest-auth/login/`
+  const validationSchema = yup.object({
+    email: yup
+      .string("Enter your email")
+      .email("Enter a valid email")
+      .required("Email is required"),
+    password: yup
+      .string("Enter your password")
+      .min(4, "Password should be of minimum 8 characters length")
+      .required("Password is required"),
+  })
   const history = useHistory()
   const formik = useFormik({
     initialValues: {
@@ -30,19 +28,16 @@ export const SignIn = (props) => {
     validationSchema,
     onSubmit: values => {
       axios
-        .post(signInURL, values)
+        .post(apiURL, values)
         .then(({data}) => {
-          console.info(data)
           const {access_token: token, user} = data
-          const {username, email, pk} = user
-          const auth = JSON.stringify({token, username, email, pk})
+          const {username, email} = user
+          const auth = JSON.stringify({token, username, email})
           localStorage.setItem('auth', auth)
-          history.push('/');
-          console.info('Login');
+          history.push('/')
+          console.info('Log in OK')
         })
-        .catch(error => {
-          console.error(error)
-        });
+        .catch(error => console.error(error))
     },
   });
 

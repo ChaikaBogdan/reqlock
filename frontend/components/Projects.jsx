@@ -4,9 +4,9 @@ import { BACKEND_URL } from "../constants.js"
 import axios from "axios"
 import { useHistory } from "react-router-dom"
 
-const apiUrl = `${BACKEND_URL}/api`
-
 export const Projects = () => {
+  const projectsUrl = `${BACKEND_URL}/api/projects/`
+  const verifyUrl = `${BACKEND_URL}/dj-rest-auth/token/verify/`
   const [projects, setProjects] = useState([])
   const history = useHistory();
 
@@ -15,17 +15,24 @@ export const Projects = () => {
     const {token} = auth
     if (!token) {
       history.push('/signin')
-      return null
-    }
-    const config = {
-      headers: { Authorization: `Bearer ${token}` }
+      return
     }
     axios
-    .get(`${apiUrl}/projects/`, config)
-    .then(({data}) => setProjects(data))
-    .catch(error => console.error(error));
+    .post(verifyUrl, {token: token})
+    .then(() => {
+      console.info('Valid user token')
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      axios.get(projectsUrl, config)
+      .then(({data}) => setProjects(data))
+      .catch(error => console.error(error))
+    }).catch(() => {
+      console.error('Invalid user token')
+      history.push('/logout')
+      return
+    })
   }, [])
-
   const projectsSchema = {
     nodes: projects.map(project => ({
       id: project.id.toString(),
