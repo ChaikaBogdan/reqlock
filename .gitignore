@@ -134,10 +134,5 @@ dmypy.json
 # Static files
 staticfiles/
 
-
 # Node modules
 node_modules/
-
-# Migrations
-reqlock/migrations/
-!/reqlock/migrations/__init__.py

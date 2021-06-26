@@ -39,12 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    'rest_framework.authtoken',
     'dj_rest_auth',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
     'dj_rest_auth.registration',
     'reqlock',
 ]
@@ -76,6 +74,18 @@ if DEBUG:
     ] + MIDDLEWARE
 
 SITE_ID = 1
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_ADAPTER = 'reqlock.account.adapter.DefaultAccountAdapter'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+LOGIN_URL = 'http://localhost:8080/signin'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
@@ -85,14 +95,15 @@ CORS_ALLOWED_ORIGINS = [
 ROOT_URLCONF = 'urls'
 
 context_processors = [
-    'django.template.context_processors.request',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
+    'django.template.context_processors.request',
 ]
 if DEBUG:
-    context_processors = [
-        'django.template.context_processors.debug'
-    ] + context_processors
+    context_processors.append(
+        'django.template.context_processors.debug',
+    )
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -126,6 +137,7 @@ REST_FRAMEWORK = {
 }
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'reqlock-auth'
+JWT_AUTH_REFRESH_COOKIE = 'reqlock-auth-refresh'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
