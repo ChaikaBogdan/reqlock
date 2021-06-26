@@ -1,6 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom"
-
 import { BACKEND_URL } from "../constants.js"
 
 export const Home = () => {

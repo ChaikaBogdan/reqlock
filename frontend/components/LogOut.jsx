@@ -16,7 +16,7 @@ export const LogOut = () => {
         console.info('Logout')
         history.push('/')
       })
-      .catch(error => console.error(error));
+      .catch(error => console.error(error))
   }, [])
 
   return null
