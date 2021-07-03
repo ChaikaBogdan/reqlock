@@ -1,5 +1,4 @@
-import React, { useEffect, useReducer, createContext } from "react"
-import { loadAuth } from "../actions.js"
+import React, { useReducer, createContext } from "react"
 
 export const AppContext = createContext()
 
@@ -22,6 +21,13 @@ export const AppContextProvider = ({ children }) => {
           message,
         }
       }
+      case "SET_LOADED": {
+        const isLoaded = true
+        return {
+          ...state,
+          isLoaded,
+        }
+      }
       default:
         return state
     }
@@ -29,13 +35,10 @@ export const AppContextProvider = ({ children }) => {
   const initialState = {
     auth: {},
     message: {},
+    isLoaded: false,
   }
   const [state, dispatch] = useReducer(reducer, initialState)
   const trunkDispatch = getThunkDispatch(dispatch)
-
-  useEffect(() => {
-    trunkDispatch(loadAuth)
-  }, [])
   return (
     <AppContext.Provider value={[state, trunkDispatch]}>
       {children}

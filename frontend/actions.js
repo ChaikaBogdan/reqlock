@@ -1,20 +1,26 @@
 import { getAxios } from "./api.js"
 import { AUTH_STORAGE_KEY } from "./constants.js"
+import queryString from 'query-string'
 
-export const loadAuth = dispatch => {
+export const loadAuth = history => dispatch => {
   console.info("Loading auth")
   const auth = JSON.parse(localStorage.getItem(AUTH_STORAGE_KEY) || "{}")
   const { token } = auth
-  console.info("Loading auth")
   if (token) {
     const apiURL = "/dj-rest-auth/token/verify/"
     const axious = getAxios(dispatch)
       .post(apiURL, {token})
       .then(() => {
         dispatch({ type: "SET_AUTH", payload: auth })
-        dispatch({ type: "SET_MESSAGE", payload: {body: "You are succesfully logged in", variant: "danger"}})
+        dispatch({ type: "SET_LOADED" })
         console.info("Loaded auth")
+      }).catch(() =>{
+        localStorage.removeItem(AUTH_STORAGE_KEY)
+        dispatch({ type: "SET_LOADED", payload: auth })
       })
+  } else {
+    localStorage.removeItem(AUTH_STORAGE_KEY)
+    dispatch({ type: "SET_LOADED", payload: auth })
   }
 }
 
@@ -32,7 +38,7 @@ export const logout = history => dispatch => {
     })
 }
 
-export const login = (values, setFormErrors, history) => dispatch => {
+export const login = (values, setFormErrors, location, history) => dispatch => {
   console.info("Logging in")
   const apiURL = '/dj-rest-auth/login/'
   getAxios(dispatch)
@@ -43,13 +49,17 @@ export const login = (values, setFormErrors, history) => dispatch => {
       const auth = { token, username, email }
       localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(auth))
       dispatch({ type: "SET_AUTH", payload: auth })
-      history.push("/")
+      const { search } = location
+      const { next } = queryString.parse(search)
+      const redirect = next ? next : "/"
+      console.log(search, next, redirect)
+      history.push(redirect)
       console.info("Logged in")
       dispatch({ type: "SET_MESSAGE", payload: {body: "You succesfully logged in", variant: "success"}})
     })
     .catch(({ response }) => {
-      const { data } = response
-      const {non_field_errors: nonFieldsErrors, ...fieldsErrors } = data
+      const { data } = response || {}
+      const {non_field_errors: nonFieldsErrors, ...fieldsErrors } = data || {}
       if (nonFieldsErrors) {
         const body = nonFieldsErrors.join(',')
         dispatch({ type: "SET_MESSAGE", payload: {body, variant: "danger"}})

@@ -3,11 +3,13 @@ import { useFormik } from "formik"
 import * as yup from "yup"
 import { Button, Form, InputGroup } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
+import { useLocation } from 'react-router'
 import { AppContext } from "./AppContext.jsx"
 import { login } from "../actions.js"
 
 export const SignIn = () => {
   const [state, dispatch] = useContext(AppContext)
+  const location = useLocation()
   const validationSchema = yup.object().shape({
     email: yup
       .string("Enter your email")
@@ -25,7 +27,7 @@ export const SignIn = () => {
       password: "user123",
     },
     validationSchema,
-    onSubmit: (values, {setErrors}) => dispatch(login(values, setErrors, history)),
+    onSubmit: (values, {setErrors}) => dispatch(login(values, setErrors, location, history)),
   })
   return (
     <Form noValidate onSubmit={formik.handleSubmit}>
