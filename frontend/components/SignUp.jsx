@@ -1,15 +1,14 @@
-import React from "react"
+import React, { useEffect, useContext } from "react"
 import { useFormik } from "formik"
 import * as yup from "yup"
-import Button from "@material-ui/core/Button"
-import TextField from "@material-ui/core/TextField"
-import { BACKEND_URL } from "../constants.js"
-import axios from "axios"
-import { useHistory } from 'react-router-dom'
+import { Button, Form } from "react-bootstrap"
+import { useHistory } from "react-router-dom"
+import { AppContext } from "./AppContext.jsx"
+import { register } from "../actions.js"
 
 export const SignUp = () => {
-  const apiURL = `${BACKEND_URL}/dj-rest-auth/registration/`
-  const validationSchema = yup.object({
+  const [state, dispatch] = useContext(AppContext)
+  const validationSchema = yup.object().shape({
     email: yup
       .string("Enter your email")
       .email("Enter a valid email")
@@ -31,52 +30,45 @@ export const SignUp = () => {
       password2: "user123",
     },
     validationSchema,
-    onSubmit: values => {
-      axios
-        .post(apiURL, values)
-        .then(res => {
-          history.push('/signin')
-        })
-        .catch(error => console.error(error))
-    },
-  });
-
+    onSubmit: (values, {setErrors}) => dispatch(register(values, setErrors, history)),
+  })
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
+    <Form noValidate onSubmit={formik.handleSubmit}>
+      <Form.Group>
+        <Form.Label>Email address</Form.Label>
+        <Form.Control
+          type="email"
           id="email"
-          name="email"
-          label="Email"
+          placeholder="Enter your email"
           value={formik.values.email}
           onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
+          isValid={!formik.errors.email}
         />
-        <TextField
-          id="password1"
-          name="password1"
-          label="Password"
+        <small className="text-danger">{formik.errors.email}</small>
+        <Form.Label>Password</Form.Label>
+        <Form.Control
           type="password"
+          id="password1"
+          placeholder="Enter your password"
           value={formik.values.password1}
           onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
+          isValid={!formik.errors.password1}
         />
-        <TextField
-          id="password2"
-          name="password2"
-          label="Verify"
+        <small className="text-danger">{formik.errors.password1}</small>
+        <Form.Label>Password confrimation</Form.Label>
+        <Form.Control
           type="password"
+          id="password2"
+          placeholder="Confrim your password"
           value={formik.values.password2}
           onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
+          isValid={!formik.errors.password2}
         />
-        <Button color="primary" variant="contained" type="submit">
-          Submit
-        </Button>
-      </form>
-    </div>
+        <small className="text-danger">{formik.errors.password2}</small>
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Sign Up
+      </Button>
+    </Form>
   )
 }

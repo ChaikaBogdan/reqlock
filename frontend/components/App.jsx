@@ -2,25 +2,23 @@ import React from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import "../styles/App.scss"
 import "beautiful-react-diagrams/styles.css"
-import { About } from "./About.jsx"
 import { Home } from "./Home.jsx"
 import { SignIn } from "./SignIn.jsx"
 import { SignUp } from "./SignUp.jsx"
 import { LogOut } from "./LogOut.jsx"
 import { Projects } from "./Projects.jsx"
 import { Navigation } from "./Navigation.jsx"
+import { DismissableAlert } from "./DismissableAlert.jsx"
+import { AppContextProvider } from "./AppContext.jsx"
 
-export const App = () => {
-  return (
-    <React.Fragment>
-      <Router forceRefresh={true}>
+export const App = () => (
+  <AppContextProvider>
+    <Router>
         <Navigation />
+        <DismissableAlert />
         <Switch>
           <Route exact path="/">
             <Home />
-          </Route>
-          <Route path="/about">
-            <About />
           </Route>
           <Route path="/projects">
             <Projects />
@@ -35,7 +33,6 @@ export const App = () => {
             <LogOut />
           </Route>
         </Switch>
-      </Router>
-    </React.Fragment>
-  )
-}
+    </Router>
+  </AppContextProvider>
+)

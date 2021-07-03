@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 import { BACKEND_URL } from "../constants.js"
 
 export const Home = () => {
   const apiUrl = `${BACKEND_URL}/api`
-  const adminUrl = `${BACKEND_URL}`
+  const adminUrl = BACKEND_URL
   return (
     <nav>
       <ul>

@@ -1,22 +1,11 @@
-import React, { useEffect } from "react"
-import { BACKEND_URL } from "../constants.js"
-import axios from "axios"
+import React, { useEffect, useContext } from "react"
 import { useHistory } from "react-router-dom"
+import { AppContext } from "./AppContext.jsx"
+import { logout } from "../actions.js"
 
 export const LogOut = () => {
-  const apiUrl = `${BACKEND_URL}/dj-rest-auth/logout/`
+  const [state, dispatch] = useContext(AppContext)
   const history = useHistory()
-
-  useEffect(() => {
-    axios
-      .post(apiUrl)
-      .then(res => {
-        localStorage.removeItem('auth')
-        console.info('Logout')
-        history.push('/')
-      })
-      .catch(error => console.error(error))
-  }, [])
-
+  useEffect(() => dispatch(logout(history)), [])
   return null
 }

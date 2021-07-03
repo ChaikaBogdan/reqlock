@@ -1,17 +1,12 @@
-import React from "react"
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap"
+import React, { useContext } from "react"
+import { Navbar, Nav, NavDropdown } from "react-bootstrap"
+import { AppContext } from "./AppContext.jsx"
 import { LinkContainer } from "react-router-bootstrap"
 
 export const Navigation = () => {
-  const auth = JSON.parse(localStorage.getItem('auth') || '{}')
-  const {token, username} = auth
+  const [state, dispatch] = useContext(AppContext)
+  const { auth } = state
+  const { token, username } = auth
   return (
     <Navbar bg="light" expand="lg">
       <LinkContainer to="/">
@@ -22,28 +17,31 @@ export const Navigation = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          {token && <LinkContainer to="/projects">
-            <Nav.Link>Projects</Nav.Link>
-          </LinkContainer>}
-          <LinkContainer to="/about">
-            <Nav.Link>About</Nav.Link>
-          </LinkContainer>
-          {!token && <><LinkContainer to="/signup">
-            <Nav.Link>Sign Up</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="/signin">
-            <Nav.Link>Sign In</Nav.Link>
-          </LinkContainer></>}
+          {token && (
+            <LinkContainer to="/projects">
+              <Nav.Link>Projects</Nav.Link>
+            </LinkContainer>
+          )}
+          {!token && (
+            <>
+              <LinkContainer to="/signup">
+                <Nav.Link>Sign Up</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/signin">
+                <Nav.Link>Sign In</Nav.Link>
+              </LinkContainer>
+            </>
+          )}
         </Nav>
-        {token && username && <><NavDropdown title={username} id="basic-nav-dropdown">
-          <LinkContainer to="/preferences">
-            <NavDropdown.Item>Preferences</NavDropdown.Item>
-          </LinkContainer>
-          <NavDropdown.Divider />
-          <LinkContainer to="/logout">
-            <NavDropdown.Item>Log out</NavDropdown.Item>
-          </LinkContainer>
-        </NavDropdown></>}
+        {token && username && (
+          <>
+            <NavDropdown title={username} id="basic-nav-dropdown">
+              <LinkContainer to="/logout">
+                <NavDropdown.Item>Log out</NavDropdown.Item>
+              </LinkContainer>
+            </NavDropdown>
+          </>
+        )}
       </Navbar.Collapse>
     </Navbar>
   )
