@@ -1,46 +1,30 @@
-import React, { useState, useEffect } from "react"
-import { UncontrolledDiagram } from "./Diagram.jsx"
-import { BACKEND_URL } from "../constants.js"
-import axios from "axios"
+import React, { useState, useEffect, useContext } from "react"
 import { useHistory } from "react-router-dom"
+import { UncontrolledDiagram } from "./Diagram.jsx"
+import { AppContext } from "./AppContext.jsx"
+import { getAxios } from "../api.js"
+
 
 export const Projects = () => {
-  const projectsUrl = `${BACKEND_URL}/api/projects/`
-  const verifyUrl = `${BACKEND_URL}/dj-rest-auth/token/verify/`
+  const [state, dispatch] = useContext(AppContext)
   const [projects, setProjects] = useState([])
-  const history = useHistory();
-
+  const history = useHistory()
+  const { auth } = state
+  const { token } = auth
   useEffect(() => {
-    const auth = JSON.parse(localStorage.getItem('auth') || '{}')
-    const {token} = auth
-    if (!token) {
-      history.push('/signin')
-      return
-    }
-    axios
-    .post(verifyUrl, {token: token})
-    .then(() => {
-      console.info('Valid user token')
-      const config = {
-        headers: { Authorization: `Bearer ${token}` }
-      }
-      axios.get(projectsUrl, config)
-      .then(({data}) => setProjects(data))
-      .catch(error => console.error(error))
-    }).catch(() => {
-      console.error('Invalid user token')
-      history.push('/logout')
-      return
-    })
-  }, [])
+    const projectsUrl = "/api/projects/"
+    getAxios(dispatch, token, history)
+    .get(projectsUrl)
+    .then(({ data }) => setProjects(data))
+    }, [])
   const projectsSchema = {
-    nodes: projects.map(project => ({
+    nodes: projects.map((project) => ({
       id: project.id.toString(),
       content: project.name,
       coordinates: [100, 100],
     })),
   }
-  if (projects.length) {
+  if (projects && projects.length) {
     return <UncontrolledDiagram initialSchema={projectsSchema} />
   }
   return null
