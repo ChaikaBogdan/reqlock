@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 
 export const DismissableAlert = () => {
   const dispatch = useDispatch()
-  const { message } = useSelector((state) => state.auth)
+  const { message } = useSelector(state => state.auth)
   const { title, body, variant } = message
   const show = Boolean(body && variant)
   if (!show) {
