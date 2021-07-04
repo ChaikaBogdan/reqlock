@@ -2,7 +2,8 @@ import React, { useReducer, createContext } from "react"
 
 export const AppContext = createContext()
 
-const getThunkDispatch = dispatch => input => input instanceof Function ? input(dispatch) : dispatch(input)
+const getThunkDispatch = (dispatch) => (input) =>
+  input instanceof Function ? input(dispatch) : dispatch(input)
 
 export const AppContextProvider = ({ children }) => {
   const reducer = (state, action) => {

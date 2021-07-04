@@ -3,7 +3,7 @@ import { useFormik } from "formik"
 import * as yup from "yup"
 import { Button, Form, InputGroup } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
-import { useLocation } from 'react-router'
+import { useLocation } from "react-router"
 import { AppContext } from "./AppContext.jsx"
 import { login } from "../actions.js"
 
@@ -27,25 +27,26 @@ export const SignIn = () => {
       password: "user123",
     },
     validationSchema,
-    onSubmit: (values, {setErrors}) => dispatch(login(values, setErrors, location, history)),
+    onSubmit: (values, { setErrors }) =>
+      dispatch(login(values, setErrors, location, history)),
   })
   return (
     <Form noValidate onSubmit={formik.handleSubmit}>
       <Form.Row>
         <Form.Group>
-            <Form.Label>Email address</Form.Label>
-            <InputGroup hasValidation>
-              <Form.Control
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                isValid={!formik.errors.email}
-              />
+          <Form.Label>Email address</Form.Label>
+          <InputGroup hasValidation>
+            <Form.Control
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              isValid={!formik.errors.email}
+            />
             <small className="text-danger">{formik.errors.email}</small>
-            </ InputGroup>
-          </ Form.Group>
+          </InputGroup>
+        </Form.Group>
         <Form.Group>
           <Form.Label>Password</Form.Label>
           <InputGroup hasValidation>
@@ -58,9 +59,9 @@ export const SignIn = () => {
               isValid={!formik.errors.password}
             />
             <small className="text-danger">{formik.errors.password}</small>
-          </ InputGroup>
-        </ Form.Group>
-      </ Form.Row>
+          </InputGroup>
+        </Form.Group>
+      </Form.Row>
       <Button variant="primary" type="submit">
         Sign In
       </Button>
