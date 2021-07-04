@@ -33,8 +33,10 @@
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
+    "redux-thunk": "^2.3.0",
     "yup": "^0.32.9"
   }
 }

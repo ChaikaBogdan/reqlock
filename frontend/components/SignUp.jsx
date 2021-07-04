@@ -30,7 +30,8 @@ export const SignUp = () => {
       password2: "user123",
     },
     validationSchema,
-    onSubmit: (values, {setErrors}) => dispatch(register(values, setErrors, history)),
+    onSubmit: (values, { setErrors }) =>
+      dispatch(register(values, setErrors, history)),
   })
   return (
     <Form noValidate onSubmit={formik.handleSubmit}>

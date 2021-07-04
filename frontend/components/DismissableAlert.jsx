@@ -13,7 +13,7 @@ export const DismissableAlert = () => {
   const onClick = () => dispatch({ type: "SET_MESSAGE", payload: {} })
   return (
     <Alert show={true} variant={variant}>
-     {title && <Alert.Heading>{title}</Alert.Heading>}
+      {title && <Alert.Heading>{title}</Alert.Heading>}
       <p>{body}</p>
       <div className="d-flex justify-content-end">
         <Button onClick={onClick} variant={variant}>

@@ -1,6 +1,6 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { EnvironmentPlugin } = require("webpack");
+const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const { EnvironmentPlugin } = require("webpack")
 
 module.exports = {
   entry: "./index.js",
@@ -30,4 +30,4 @@ module.exports = {
     new HtmlWebpackPlugin({ title: "ReqLock", template: "./index.html" }),
     new EnvironmentPlugin({ BACKEND_URL: "http://127.0.0.1:8000" }),
   ],
-};
+}

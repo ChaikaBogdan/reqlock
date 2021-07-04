@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { useHistory } from "react-router-dom"
-import { useLocation } from 'react-router'
+import { useLocation } from "react-router"
 import { UncontrolledDiagram } from "./Diagram.jsx"
 import { AppContext } from "./AppContext.jsx"
 import { getAxios } from "../api.js"
@@ -17,15 +17,22 @@ export const Projects = () => {
     if (history && !token) {
       history.push({
         pathname: "/signin",
-        search: `?next=${pathname}`
+        search: `?next=${pathname}`,
       })
-      dispatch({ type: "SET_MESSAGE", payload: {title: "Unathorized", body: "Please log in first", variant: "warning"}})
+      dispatch({
+        type: "SET_MESSAGE",
+        payload: {
+          title: "Unathorized",
+          body: "Please log in first",
+          variant: "warning",
+        },
+      })
       return
     }
     getAxios(dispatch, token)
       .get(projectsUrl)
       .then(({ data }) => setProjects(data))
-    }, [])
+  }, [])
   const projectsSchema = {
     nodes: projects.map((project) => ({
       id: project.id.toString(),

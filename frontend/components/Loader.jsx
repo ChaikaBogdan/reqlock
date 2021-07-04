@@ -11,9 +11,7 @@ export const Loader = ({ children }) => {
   const { isLoaded } = state
   useEffect(() => dispatch(loadAuth(history)), [])
   if (isLoaded) {
-    return (<>{children}</>)
+    return <>{children}</>
   }
-  return (
-    <Spinner animation="border" />
-  )
+  return <Spinner animation="border" />
 }
