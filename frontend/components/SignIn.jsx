@@ -1,7 +1,7 @@
 import React from "react"
 import { useFormik } from "formik"
 import * as yup from "yup"
-import { Button, Form, InputGroup } from "react-bootstrap"
+import { Button, Form, Col, InputGroup } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
 import { useLocation } from "react-router"
 import { login } from "../actions.js"
@@ -33,32 +33,36 @@ export const SignIn = () => {
   return (
     <Form noValidate onSubmit={formik.handleSubmit}>
       <Form.Row>
-        <Form.Group>
+        <Form.Group as={Col} md="4">
           <Form.Label>Email address</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
               type="email"
               id="email"
+              controlId="email"
               placeholder="Enter your email"
               value={formik.values.email}
               onChange={formik.handleChange}
               isValid={!formik.errors.email}
+              isInvalid={formik.errors.email}
             />
-            <small className="text-danger">{formik.errors.email}</small>
+            {formik.errors.email && <Form.Control.Feedback type="invalid">{formik.errors.email}</Form.Control.Feedback>}
           </InputGroup>
         </Form.Group>
-        <Form.Group>
+        <Form.Group as={Col} md="4">
           <Form.Label>Password</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
               type="password"
               id="password"
+              controlId="password"
               placeholder="Enter your password"
               value={formik.values.password}
               onChange={formik.handleChange}
               isValid={!formik.errors.password}
+              isInvalid={formik.errors.password}
             />
-            <small className="text-danger">{formik.errors.password}</small>
+            {formik.errors.password && <Form.Control.Feedback type="invalid">{formik.errors.password}</Form.Control.Feedback>}
           </InputGroup>
         </Form.Group>
       </Form.Row>
