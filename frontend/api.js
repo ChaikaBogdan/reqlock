@@ -1,5 +1,6 @@
 import axios from "axios"
 import { BACKEND_URL } from "./constants.js"
+import { SET_MESSAGE } from "./auth"
 
 export const getAxios = (dispatch, token, timeout = 30) => {
   const api = axios.create({
@@ -8,10 +9,7 @@ export const getAxios = (dispatch, token, timeout = 30) => {
   })
   const errorHandler = (error) => {
     const { name, message } = error
-    dispatch({
-      type: "SET_MESSAGE",
-      payload: { title: name, body: message, variant: "danger" },
-    })
+    dispatch(SET_MESSAGE({ title: name, body: message, variant: "danger" }))
     return Promise.reject(error)
   }
   if (token) {

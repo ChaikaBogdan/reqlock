@@ -1,10 +1,10 @@
-import React, { useContext } from "react"
+import React from "react"
 import { Alert, Button } from "react-bootstrap"
-import { AppContext } from "./AppContext.jsx"
+import { useSelector, useDispatch } from "react-redux"
 
 export const DismissableAlert = () => {
-  const [state, dispatch] = useContext(AppContext)
-  const { message } = state
+  const dispatch = useDispatch()
+  const { message } = useSelector((state) => state.auth)
   const { title, body, variant } = message
   const show = Boolean(body && variant)
   if (!show) {

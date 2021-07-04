@@ -1,11 +1,10 @@
-import React, { useContext } from "react"
+import React from "react"
 import { Navbar, Nav, NavDropdown } from "react-bootstrap"
-import { AppContext } from "./AppContext.jsx"
 import { LinkContainer } from "react-router-bootstrap"
+import { useSelector } from "react-redux"
 
 export const Navigation = () => {
-  const [state, dispatch] = useContext(AppContext)
-  const { auth } = state
+  const { auth } = useSelector((state) => state.auth)
   const { token, username } = auth
   return (
     <Navbar bg="light" expand="lg">

@@ -1,13 +1,13 @@
-import React, { useEffect, useContext } from "react"
+import React from "react"
 import { useFormik } from "formik"
 import * as yup from "yup"
 import { Button, Form } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
-import { AppContext } from "./AppContext.jsx"
 import { register } from "../actions.js"
+import { useDispatch } from "react-redux"
 
 export const SignUp = () => {
-  const [state, dispatch] = useContext(AppContext)
+  const dispatch = useDispatch()
   const validationSchema = yup.object().shape({
     email: yup
       .string("Enter your email")

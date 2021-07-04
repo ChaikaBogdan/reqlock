@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { useLocation } from "react-router"
 import { UncontrolledDiagram } from "./Diagram.jsx"
-import { AppContext } from "./AppContext.jsx"
 import { getAxios } from "../api.js"
+import { useSelector, useDispatch } from "react-redux"
 
 export const Projects = () => {
-  const [state, dispatch] = useContext(AppContext)
+  const dispatch = useDispatch()
   const [projects, setProjects] = useState([])
   const history = useHistory()
   const { pathname } = useLocation()
-  const { auth } = state
+  const { auth } = useSelector((state) => state.auth)
   const { token } = auth
   useEffect(() => {
     const projectsUrl = "/api/projects/"

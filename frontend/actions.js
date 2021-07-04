@@ -1,6 +1,7 @@
 import { getAxios } from "./api.js"
 import { AUTH_STORAGE_KEY } from "./constants.js"
 import queryString from "query-string"
+import { SET_AUTH, SET_MESSAGE, SET_LOADED } from "./auth"
 
 export const loadAuth = (history) => (dispatch) => {
   console.info("Loading auth")
@@ -11,17 +12,17 @@ export const loadAuth = (history) => (dispatch) => {
     const axious = getAxios(dispatch)
       .post(apiURL, { token })
       .then(() => {
-        dispatch({ type: "SET_AUTH", payload: auth })
-        dispatch({ type: "SET_LOADED" })
+        dispatch(SET_AUTH(auth))
+        dispatch(SET_LOADED())
         console.info("Loaded auth")
       })
       .catch(() => {
         localStorage.removeItem(AUTH_STORAGE_KEY)
-        dispatch({ type: "SET_LOADED", payload: auth })
+        dispatch(SET_LOADED())
       })
   } else {
     localStorage.removeItem(AUTH_STORAGE_KEY)
-    dispatch({ type: "SET_LOADED", payload: auth })
+    dispatch(SET_LOADED())
   }
 }
 
@@ -32,13 +33,12 @@ export const logout = (history) => (dispatch) => {
     .post(apiUrl)
     .then(() => {
       localStorage.removeItem(AUTH_STORAGE_KEY)
-      dispatch({ type: "SET_AUTH", payload: {} })
+      dispatch(SET_AUTH({}))
       history.push("/")
       console.info("Logged out")
-      dispatch({
-        type: "SET_MESSAGE",
-        payload: { body: "You succesfully logged out", variant: "success" },
-      })
+      dispatch(
+        SET_MESSAGE({ body: "You succesfully logged out", variant: "success" })
+      )
     })
 }
 
@@ -53,17 +53,14 @@ export const login =
         const { username, email } = user
         const auth = { token, username, email }
         localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(auth))
-        dispatch({ type: "SET_AUTH", payload: auth })
+        dispatch(SET_AUTH(auth))
         const { search } = location
         const { next } = queryString.parse(search)
         const redirect = next ? next : "/"
-        console.log(search, next, redirect)
+        // console.log(search, next, redirect)
         history.push(redirect)
         console.info("Logged in")
-        dispatch({
-          type: "SET_MESSAGE",
-          payload: { body: "You succesfully logged in", variant: "success" },
-        })
+        SET_MESSAGE({ body: "You succesfully logged in", variant: "success" })
       })
       .catch(({ response }) => {
         const { data } = response || {}
@@ -71,10 +68,7 @@ export const login =
           data || {}
         if (nonFieldsErrors) {
           const body = nonFieldsErrors.join(",")
-          dispatch({
-            type: "SET_MESSAGE",
-            payload: { body, variant: "danger" },
-          })
+          dispatch(SET_MESSAGE({ body, variant: "danger" }))
         }
         fieldsErrors && setFormErrors(fieldsErrors)
       })
@@ -87,13 +81,12 @@ export const register = (values, setFormErrors, history) => (dispatch) => {
     .post(apiURL, values)
     .then(() => {
       history.push("/signin")
-      dispatch({
-        type: "SET_MESSAGE",
-        payload: {
+      dispatch(
+        SET_MESSAGE({
           body: "Please log in with sign up email and password",
           variant: "success",
-        },
-      })
+        })
+      )
       console.info("Registered")
     })
     .catch(({ response }) => {

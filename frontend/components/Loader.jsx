@@ -1,14 +1,13 @@
-import React, { useEffect, useContext } from "react"
+import React, { useEffect } from "react"
 import { useHistory } from "react-router-dom"
-import { UncontrolledDiagram } from "./Diagram.jsx"
 import { Spinner } from "react-bootstrap"
-import { AppContext } from "./AppContext.jsx"
 import { loadAuth } from "../actions.js"
+import { useSelector, useDispatch } from "react-redux"
 
 export const Loader = ({ children }) => {
-  const [state, dispatch] = useContext(AppContext)
+  const dispatch = useDispatch()
   const history = useHistory()
-  const { isLoaded } = state
+  const { isLoaded } = useSelector((state) => state.auth)
   useEffect(() => dispatch(loadAuth(history)), [])
   if (isLoaded) {
     return <>{children}</>
