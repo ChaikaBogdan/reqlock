@@ -1,0 +1,12 @@
+@import "~bootstrap/scss/bootstrap";
+
+$main-color: red;
+
+h1 {
+  text-align: center;
+}
+
+.accent {
+  color: $main-color;
+  font-weight: bold;
+}
