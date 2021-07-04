@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react"
 import { useFormik } from "formik"
 import * as yup from "yup"
-import { Button, Form } from "react-bootstrap"
+import { Button, Form, Col, InputGroup } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
 import { AppContext } from "./AppContext.jsx"
 import { register } from "../actions.js"
@@ -35,38 +35,56 @@ export const SignUp = () => {
   })
   return (
     <Form noValidate onSubmit={formik.handleSubmit}>
-      <Form.Group>
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          type="email"
-          id="email"
-          placeholder="Enter your email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          isValid={!formik.errors.email}
-        />
-        <small className="text-danger">{formik.errors.email}</small>
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          id="password1"
-          placeholder="Enter your password"
-          value={formik.values.password1}
-          onChange={formik.handleChange}
-          isValid={!formik.errors.password1}
-        />
-        <small className="text-danger">{formik.errors.password1}</small>
-        <Form.Label>Password confrimation</Form.Label>
-        <Form.Control
-          type="password"
-          id="password2"
-          placeholder="Confrim your password"
-          value={formik.values.password2}
-          onChange={formik.handleChange}
-          isValid={!formik.errors.password2}
-        />
-        <small className="text-danger">{formik.errors.password2}</small>
-      </Form.Group>
+      <Form.Row>
+        <Form.Group as={Col} md="4">
+          <Form.Label>Email address</Form.Label>
+          <InputGroup hasValidation>
+            <Form.Control
+              type="email"
+              id="email"
+              controlId="email"
+              placeholder="Enter your email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              isValid={!formik.errors.email}
+              isInvalid={formik.errors.email}
+            />
+            {formik.errors.email && <Form.Control.Feedback type="invalid">{formik.errors.email}</Form.Control.Feedback>}
+          </InputGroup>
+        </Form.Group>
+        <Form.Group as={Col} md="4">
+          <Form.Label>Password</Form.Label>
+          <InputGroup hasValidation>
+            <Form.Control
+              type="password"
+              id="password1"
+              controlId="password1"
+              placeholder="Enter your password"
+              value={formik.values.password1}
+              onChange={formik.handleChange}
+              isValid={!formik.errors.password1}
+              isInvalid={formik.errors.password1}
+            />
+            {formik.errors.password1 && <Form.Control.Feedback type="invalid">{formik.errors.password1}</Form.Control.Feedback>}
+          </InputGroup>
+        </Form.Group>
+        <Form.Group as={Col} md="4">
+          <Form.Label>Password confirmation</Form.Label>
+          <InputGroup hasValidation>
+            <Form.Control
+              type="password"
+              id="password2"
+              controlId="password2"
+              placeholder="Confrim your password"
+              value={formik.values.password2}
+              onChange={formik.handleChange}
+              isValid={!formik.errors.password2}
+              isInvalid={formik.errors.password2}
+            />
+            {formik.errors.password2 && <Form.Control.Feedback type="invalid">{formik.errors.password2}</Form.Control.Feedback>}
+          </InputGroup>
+        </Form.Group>
+      </Form.Row>
       <Button variant="primary" type="submit">
         Sign Up
       </Button>
