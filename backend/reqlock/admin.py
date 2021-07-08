@@ -9,7 +9,7 @@ class CustomFieldInline(SoftDeleteInlineAdmin):
 
 
 class ProjectAdmin(SoftDeleteAdmin):
-    filter_horizontal = ["members"]
+    filter_horizontal = ["members", "linked_projects"]
     inlines = [CustomFieldInline]
 
 

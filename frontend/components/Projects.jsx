@@ -33,12 +33,24 @@ export const Projects = () => {
       .get(projectsUrl)
       .then(({ data }) => setProjects(data))
   }, [])
-  const projectsSchema = {
-    nodes: projects.map((project) => ({
+  const nodes = projects.map((project) => {
+    return {
       id: project.id.toString(),
       content: project.name,
       coordinates: [100, 100],
-    })),
+    }
+  })
+  const links = projects.map((project) => {
+    return project.linked_projects.map((linked_project) => {
+      return {
+        input: project.id.toString(),
+        output: linked_project.id.toString(),
+      }
+    })
+  })
+  const projectsSchema = {
+    nodes,
+    links: links.flat(),
   }
   if (projects && projects.length) {
     return <UncontrolledDiagram initialSchema={projectsSchema} />

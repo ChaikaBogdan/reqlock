@@ -16,5 +16,7 @@ class Project(SoftDeleteModel):
         settings.AUTH_USER_MODEL, blank=True, related_name='+')
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
 
+    linked_projects = models.ManyToManyField("self", blank=True, symmetrical=False, related_name='+')
+
     def __str__(self):
         return self.name

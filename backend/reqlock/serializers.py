@@ -6,7 +6,14 @@ from .models import *
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'linked_projects']
+
+    class LinkedProjectSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Project
+            fields = ['id', 'name']
+
+    linked_projects = LinkedProjectSerializer(many=True)
 
 
 class OrganisationSerializer(serializers.ModelSerializer):

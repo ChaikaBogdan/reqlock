@@ -57,7 +57,6 @@ export const login =
         const { search } = location
         const { next } = queryString.parse(search)
         const redirect = next ? next : "/"
-        // console.log(search, next, redirect)
         history.push(redirect)
         console.info("Logged in")
         SET_MESSAGE({ body: "You succesfully logged in", variant: "success" })
