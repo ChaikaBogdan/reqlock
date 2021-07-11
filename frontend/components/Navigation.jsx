@@ -17,9 +17,14 @@ export const Navigation = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           {token && (
-            <LinkContainer to="/projects">
-              <Nav.Link>Projects</Nav.Link>
-            </LinkContainer>
+            <>
+              <LinkContainer to="/projects">
+                <Nav.Link>Projects</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/components">
+                <Nav.Link>Components</Nav.Link>
+              </LinkContainer>
+            </>
           )}
           {!token && (
             <>

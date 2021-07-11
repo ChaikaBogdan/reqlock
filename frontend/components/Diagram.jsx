@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams"
 
 export const UncontrolledDiagram = (props) => {
+  console.info("Initial Schema", props.initialSchema)
   const [initialSchema, setInitialSchema] = useState(props.initialSchema)
   useEffect(() => {}, [initialSchema])
 

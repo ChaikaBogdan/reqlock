@@ -23,8 +23,8 @@ export const SignIn = () => {
   const history = useHistory()
   const formik = useFormik({
     initialValues: {
-      email: "user@reqlock.com",
-      password: "user123",
+      email: "admin@reqlock.com",
+      password: "admin",
     },
     validationSchema,
     onSubmit: (values, { setErrors }) =>

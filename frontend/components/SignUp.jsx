@@ -26,8 +26,8 @@ export const SignUp = () => {
   const formik = useFormik({
     initialValues: {
       email: "user@reqlock.com",
-      password1: "user123",
-      password2: "user123",
+      password1: "QWer12#$",
+      password2: "QWer12#$",
     },
     validationSchema,
     onSubmit: (values, { setErrors }) =>

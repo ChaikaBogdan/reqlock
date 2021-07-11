@@ -6,15 +6,16 @@ import { getAxios } from "../api.js"
 import { useSelector, useDispatch } from "react-redux"
 import { Button, Form, Col, InputGroup } from "react-bootstrap"
 
-export const Projects = () => {
+export const Components = () => {
   const dispatch = useDispatch()
-  const [projects, setProjects] = useState([])
+  const [components, setComponents] = useState([])
   const history = useHistory()
   const { pathname } = useLocation()
   const { auth } = useSelector((state) => state.auth)
   const { token } = auth
   useEffect(() => {
-    const projectsUrl = "/api/projects/"
+    const componentsUrl = "/api/components/"
+
     if (history && !token) {
       history.push({
         pathname: "/signin",
@@ -31,34 +32,27 @@ export const Projects = () => {
       return
     }
     getAxios(dispatch, token)
-      .get(projectsUrl)
-      .then(({ data }) => setProjects(data))
+      .get(componentsUrl)
+      .then(({ data }) => setComponents(data))
   }, [])
-  const nodes = projects.map((project) => {
+  const nodes = components.map((component) => {
     return {
-      id: project.id.toString(),
-      content: project.name,
+      id: component.id.toString(),
+      content: component.name,
       coordinates: [100, 100],
     }
   })
-  
-  const links = projects.map((project) => {
-    return project.linked_projects.map((linked_project) => {
-      return {
-        input: project.id.toString(),
-        output: linked_project.id.toString(),
-      }
-    })
-  })
-  const projectsSchema = {
+
+  const componentsSchema = {
     nodes,
-    links: links.flat(),
+    links: [],
   }
-  if (projects && projects.length) {
+
+  if (components && components.length) {
     return (
       <>
-        <UncontrolledDiagram initialSchema={projectsSchema} />
-        <Button variant="primary">Add project</Button>
+        <UncontrolledDiagram initialSchema={componentsSchema} />
+        <Button variant="primary">Add Component</Button>
       </>
     )
   }
