@@ -4,7 +4,9 @@ import { useLocation } from "react-router"
 import { UncontrolledDiagram } from "./Diagram.jsx"
 import { getAxios } from "../api.js"
 import { useSelector, useDispatch } from "react-redux"
-import { Button, Form, Col, InputGroup } from "react-bootstrap"
+import { Button } from "react-bootstrap"
+import { SHOW } from "../modal.js"
+import { AddProjectModal } from "./AddProjectModal.jsx"
 
 export const Projects = () => {
   const dispatch = useDispatch()
@@ -13,6 +15,8 @@ export const Projects = () => {
   const { pathname } = useLocation()
   const { auth } = useSelector((state) => state.auth)
   const { token } = auth
+  const handleShow = () => dispatch(SHOW())
+
   useEffect(() => {
     const projectsUrl = "/api/projects/"
     if (history && !token) {
@@ -41,7 +45,7 @@ export const Projects = () => {
       coordinates: [100, 100],
     }
   })
-  
+
   const links = projects.map((project) => {
     return project.linked_projects.map((linked_project) => {
       return {
@@ -58,7 +62,10 @@ export const Projects = () => {
     return (
       <>
         <UncontrolledDiagram initialSchema={projectsSchema} />
-        <Button variant="primary">Add project</Button>
+        <Button variant="primary" onClick={handleShow}>
+          Add Project
+        </Button>
+        <AddProjectModal />
       </>
     )
   }
