@@ -11,6 +11,7 @@ import { Projects } from "./Projects.jsx"
 import { Components } from "./Components.jsx"
 import { Navigation } from "./Navigation.jsx"
 import { DismissableAlert } from "./DismissableAlert.jsx"
+import { NotFound } from "./NotFound.jsx"
 import { Loader } from "./Loader.jsx"
 
 export const App = () => (
@@ -38,6 +39,7 @@ export const App = () => (
           <Route path="/logout">
             <LogOut />
           </Route>
+          <Route component={NotFound} />
         </Switch>
       </Loader>
     </Container>

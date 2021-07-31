@@ -3,7 +3,7 @@ import { AUTH_STORAGE_KEY } from "./constants.js"
 import queryString from "query-string"
 import { SET_AUTH, SET_MESSAGE, SET_LOADED } from "./auth"
 
-export const loadAuth = (history) => (dispatch) => {
+export const loadAuth = history => (dispatch) => {
   console.info("Loading auth")
   const auth = JSON.parse(localStorage.getItem(AUTH_STORAGE_KEY) || "{}")
   const { token } = auth
@@ -26,7 +26,7 @@ export const loadAuth = (history) => (dispatch) => {
   }
 }
 
-export const logout = (history) => (dispatch) => {
+export const logout = history => (dispatch) => {
   console.info("Logging out")
   const apiUrl = "/dj-rest-auth/logout/"
   getAxios(dispatch)
@@ -59,7 +59,7 @@ export const login =
         const redirect = next ? next : "/"
         history.push(redirect)
         console.info("Logged in")
-        SET_MESSAGE({ body: "You succesfully logged in", variant: "success" })
+        dispatch(SET_MESSAGE({ body: "You succesfully logged in", variant: "success" }))
       })
       .catch(({ response }) => {
         const { data } = response || {}
@@ -92,4 +92,18 @@ export const register = (values, setFormErrors, history) => (dispatch) => {
       const { data } = response
       data && setFormErrors(data)
     })
+}
+
+export const notFound = (location, history) => (dispatch) => {
+  const {pathname: notFoundURL} = location
+  const notFoundMessage = `There is no such page - ${notFoundURL}`
+  console.warn(notFoundMessage)
+  history.push({
+    pathname: "/",
+  })
+  dispatch(SET_MESSAGE({
+    title: "Not found",
+    body: notFoundMessage,
+    variant: "warning",
+  }))
 }
