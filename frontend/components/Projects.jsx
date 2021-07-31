@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Button } from "react-bootstrap"
 import { SHOW } from "../modal.js"
 import { AddProjectModal } from "./AddProjectModal.jsx"
+import { Modal } from "bootstrap"
 
 export const Projects = () => {
   const dispatch = useDispatch()
@@ -42,7 +43,10 @@ export const Projects = () => {
     return {
       id: project.id.toString(),
       content: project.name,
-      coordinates: [100, 100],
+      coordinates: [
+        Math.floor(Math.random() * 1000),
+        Math.floor(Math.random() * 300),
+      ],
     }
   })
 
