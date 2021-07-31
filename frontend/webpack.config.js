@@ -5,7 +5,8 @@ const { EnvironmentPlugin } = require("webpack")
 module.exports = {
   entry: "./index.js",
   output: {
-    path: path.join(__dirname, "/static/frontend"),
+    publicPath: "/",
+    path: path.resolve(__dirname, "/static"),
     filename: "bundle.js",
   },
   module: {
@@ -23,7 +24,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: "./",
+    contentBase: "/static",
     hot: true,
   },
   plugins: [
