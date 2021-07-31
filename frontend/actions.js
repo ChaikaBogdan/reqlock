@@ -2,6 +2,7 @@ import { getAxios } from "./api.js"
 import { AUTH_STORAGE_KEY } from "./constants.js"
 import queryString from "query-string"
 import { SET_AUTH, SET_MESSAGE, SET_LOADED } from "./auth"
+import { HIDE } from "./modal"
 
 export const loadAuth = (history) => (dispatch) => {
   console.info("Loading auth")
@@ -41,6 +42,24 @@ export const logout = (history) => (dispatch) => {
       )
     })
 }
+
+export const addProject =
+  (values, token, setFormErrors, location, history) => (dispatch) => {
+    console.info("Adding project")
+    const apiUrl = "/api/projects/"
+    getAxios(dispatch, token)
+      .post(apiUrl, values)
+      .then(() => {
+        console.log("You succesfully added project")
+        dispatch(HIDE())
+        dispatch(
+          SET_MESSAGE({
+            body: "You succesfully added project",
+            variant: "success",
+          })
+        )
+      })
+  }
 
 export const login =
   (values, setFormErrors, location, history) => (dispatch) => {

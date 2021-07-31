@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux"
 import { Button } from "react-bootstrap"
 import { SHOW } from "../modal.js"
 import { AddProjectModal } from "./AddProjectModal.jsx"
-import { Modal } from "bootstrap"
 
 export const Projects = () => {
   const dispatch = useDispatch()

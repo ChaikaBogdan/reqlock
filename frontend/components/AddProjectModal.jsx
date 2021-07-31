@@ -2,11 +2,14 @@ import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { HIDE } from "../modal.js"
 import { Button, Modal, Form, Col, InputGroup } from "react-bootstrap"
+import { addProject } from "../actions.js"
 import { useFormik } from "formik"
 import * as yup from "yup"
 
 export const AddProjectModal = () => {
   const show = useSelector((state) => state.modal.show)
+  const { auth } = useSelector((state) => state.auth)
+  const { token } = auth
   const dispatch = useDispatch()
   const handleClose = () => dispatch(HIDE())
 
@@ -19,7 +22,8 @@ export const AddProjectModal = () => {
       name: "",
     },
     validationSchema,
-    onSubmit: (values, {}) => console.log(values),
+    onSubmit: (values, { setErrors }) =>
+      dispatch(addProject(values, token, setErrors, location, history)),
   })
 
   if (show) {
