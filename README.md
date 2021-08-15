@@ -7,7 +7,7 @@
 - `pipenv shell`
 - `python manage.py dumpdata  > db.json --exclude allauth` - to export DB to fixture db.json
 - `./bootstrap.sh` - to delete local db.sqlite, reset migrations and superuser, start api server, seed db with test data
-- `autopep8 --in-place --aggressive --aggressive -r ./backend` - autolint before push
+- `autopep8 --in-place --aggressive -r ./backend` - autolint before push
 
 ## Frontend
 
